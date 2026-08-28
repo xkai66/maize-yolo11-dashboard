@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-29T00:18:22+08:00",
+  "updated_at": "2026-08-29T00:23:20+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_191352.csv",
@@ -86,11 +86,11 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 280,
+    "index": 281,
     "total": 290,
-    "model": "yolo11-starnet.yaml",
+    "model": "yolo11-swintransformer.yaml",
     "total_epochs": 5,
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_280_yolo11-starnet",
+    "phase": "模型构建中",
     "active": true,
     "state": "训练中",
     "log": "batch_screen_20260828_191352.log"
@@ -9049,8 +9049,8 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 280,
-      "model": "yolo11-starnet.yaml",
+      "rank": 281,
+      "model": "yolo11-swintransformer.yaml",
       "status": "training",
       "best_epoch": "",
       "precision": "",
@@ -9061,7 +9061,7 @@
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": 65.7,
+      "runtime_seconds": "",
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
       "delta_map5095": "",
@@ -9075,7 +9075,7 @@
       "data_status": "实时训练中：最终指标待完成5轮验证",
       "error": "",
       "image_url": "",
-      "module": "starnet",
+      "module": "swintransformer",
       "position": "Backbone / 骨干网络",
       "effect": "修改网络结构或算子，具体作用需结合 YAML 与源码核对"
     }
