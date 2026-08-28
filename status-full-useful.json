@@ -1,11 +1,12 @@
 {
-  "updated_at": "2026-08-28T12:58:12+08:00",
+  "updated_at": "2026-08-28T13:02:32+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "",
   "total": 0,
   "recorded": 0,
   "trained": 0,
+  "interrupted": 0,
   "failed": 0,
   "skipped_oom": 0,
   "skipped_timeout": 0,

@@ -134,7 +134,7 @@
       <article class="card"><div class="metric-label">已记录模型</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
       <article class="card"><div class="metric-label">已训练完成</div><div class="metric" id="trained">—</div></article>
       <article class="card"><div class="metric-label">当前最佳 mAP50-95</div><div class="metric" id="best">—</div></article>
-      <article class="card"><div class="metric-label">失败 / OOM / 超时</div><div class="metric" id="failed">—</div></article>
+      <article class="card"><div class="metric-label">失败 / OOM / 超时 / 中断</div><div class="metric" id="failed">—</div></article>
     </section>
     <section class="card progress-card">
       <div><div class="progress-title"><span>批量实验进度</span><span id="progressText">—</span></div><div class="bar"><i id="progressBar"></i></div></div>
@@ -166,7 +166,7 @@
         document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : '100轮正式';
         document.querySelector('#recorded').innerHTML = `${d.recorded} <small>/ ${d.total}</small>`;
         document.querySelector('#trained').textContent = d.trained;
-        const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0); document.querySelector('#failed').textContent = failedTotal;
+        const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0) + Number(d.interrupted || 0); document.querySelector('#failed').textContent = failedTotal;
         const candidates = d.ranking.filter(x => !String(x.status).startsWith('reference') && x.map5095 !== ''); const best = candidates[0]; document.querySelector('#best').textContent = best ? pct(best.map5095) : '—';
         const done = d.recorded, total = d.total || 1, progress = Math.min(100, done / total * 100); document.querySelector('#progressBar').style.width = progress + '%'; document.querySelector('#progressText').textContent = `${done} / ${d.total} · ${progress.toFixed(1)}%`;
         const c = d.current || {}; const active = c.active === true; const phase = c.phase || '等待首批数据'; document.querySelector('#currentTitle').textContent = active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = c.epoch !== undefined ? `epoch ${c.epoch} / ${c.total_epochs || '—'}` : (active ? phase : 'epoch —'); document.querySelector('#currentSpeed').textContent = active && c.speed_it_s ? `速度 ${Number(c.speed_it_s).toFixed(2)} it/s` : (active ? phase : '速度 —'); document.querySelector('#currentEta').textContent = active && c.eta_text && c.eta_text !== '—' ? `预计剩余 ${c.eta_text}` : (active ? '预计剩余等待首批速度' : '预计剩余 —'); document.querySelector('#currentMap').textContent = c.live_map5095 ? `mAP50-95 ${pct(c.live_map5095)}` : (active ? 'mAP50-95 待验证' : 'mAP50-95 —');

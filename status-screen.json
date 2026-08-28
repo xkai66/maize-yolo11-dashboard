@@ -1,16 +1,17 @@
 {
-  "updated_at": "2026-08-28T12:58:12+08:00",
+  "updated_at": "2026-08-28T13:02:32+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_123350.csv",
   "total": 290,
-  "recorded": 42,
+  "recorded": 43,
   "trained": 19,
+  "interrupted": 1,
   "failed": 10,
   "skipped_oom": 0,
   "skipped_timeout": 13,
   "build_ok": 0,
-  "pending": 248,
+  "pending": 247,
   "baseline": {
     "rank": "基准",
     "model": "基准",
@@ -84,18 +85,18 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 43,
+    "index": 44,
     "total": 290,
-    "model": "yolo11-C3k2-ConvFormer.yaml",
+    "model": "yolo11-C3k2-CTA.yaml",
     "total_epochs": 5,
     "phase": "数据准备中",
     "epoch": 5,
     "batch": 157,
     "batch_total": 157,
-    "speed_it_s": 5.33,
+    "speed_it_s": 4.74,
     "eta_seconds": 0.0,
     "eta_text": "约 0秒",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_043_yolo11-C3k2-ConvFormer",
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_044_yolo11-C3k2-CTA",
     "active": true,
     "state": "训练中",
     "log": "batch_screen_20260828_123350.log"
@@ -639,6 +640,38 @@
     },
     {
       "rank": 17,
+      "model": "yolo11-C3k2-ConvFormer.yaml",
+      "status": "trained",
+      "best_epoch": "5",
+      "precision": "0.5009",
+      "recall": "0.56159",
+      "map50": "0.51244",
+      "map5095": "0.19705",
+      "parameters": "2469312",
+      "parameters_m": "2.469312",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "-0.0706",
+      "delta_parameters_m": "-0.121",
+      "delta_screen_map5095": "-0.0706",
+      "module_usefulness": "初筛未超过",
+      "verdict": "更轻但精度未超过",
+      "convergence": "样本不足",
+      "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
+      "log_evidence": "日志 status=trained · 完成 5/5 轮",
+      "error": "",
+      "image_url": "assets/screen_results_18.png",
+      "module": "c3k2-convformer",
+      "position": "Backbone / Neck（需按 YAML 逐层核对）",
+      "effect": "引入注意力或特征块，增强显著区域与特征表达",
+      "runtime_seconds": 228.8,
+      "avg_epoch_seconds": 45.8,
+      "estimated_total_seconds": 228.8,
+      "delta_runtime_seconds": "+98.4",
+      "data_status": "数据完整"
+    },
+    {
+      "rank": 18,
       "model": "yolo11-C3k2-ConvFormer-CGLU.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -659,7 +692,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/screen_results_18.png",
+      "image_url": "assets/screen_results_19.png",
       "module": "c3k2-convformer-cglu",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -670,7 +703,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 18,
+      "rank": 19,
       "model": "yolo11-C3k2-AdditiveBlock.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -688,7 +721,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -702,7 +735,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 19,
+      "rank": 20,
       "model": "yolo11-BIMAFPN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -720,7 +753,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.0s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.1s，完成 2 轮，平均 60.0s/轮",
       "image_url": "",
@@ -734,7 +767,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 20,
+      "rank": 21,
       "model": "yolo11-C3k2-AdditiveBlock-CGLU.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -752,7 +785,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -766,7 +799,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 21,
+      "rank": 22,
       "model": "yolo11-C3k2-AP.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -784,7 +817,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 75.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 150.2s，完成 2 轮，平均 75.1s/轮",
       "image_url": "",
@@ -798,7 +831,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 22,
+      "rank": 23,
       "model": "yolo11-aux.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -816,7 +849,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -830,7 +863,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 23,
+      "rank": 24,
       "model": "yolo11-atthead.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -848,7 +881,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.0s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.0s，完成 2 轮，平均 60.0s/轮",
       "image_url": "",
@@ -862,7 +895,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 24,
+      "rank": 25,
       "model": "yolo11-AIFIRepBN.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -883,7 +916,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/screen_results_25.png",
+      "image_url": "assets/screen_results_26.png",
       "module": "aifirepbn",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "修改网络结构或算子，具体作用需结合 YAML 与源码核对",
@@ -894,7 +927,7 @@
       "data_status": "耗时已从结果/日志补算"
     },
     {
-      "rank": 25,
+      "rank": 26,
       "model": "yolo11-C2BRA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "2",
@@ -912,7 +945,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.1s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -926,7 +959,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 26,
+      "rank": 27,
       "model": "yolo11-bifpn.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -944,7 +977,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 1/5 轮 · 平均 120.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.1s，完成 1 轮，平均 120.1s/轮",
       "image_url": "",
@@ -958,7 +991,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 27,
+      "rank": 28,
       "model": "yolo11-bifpn-SDI.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -976,7 +1009,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 2/5 轮 · 平均 60.1s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -990,9 +1023,9 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 28,
+      "rank": 29,
       "model": "yolo11-AIFI.yaml",
-      "status": "trained",
+      "status": "interrupted",
       "best_epoch": "",
       "precision": "",
       "recall": "",
@@ -1005,11 +1038,11 @@
       "delta_map5095": "",
       "delta_parameters_m": "+0.626",
       "delta_screen_map5095": "",
-      "module_usefulness": "待完成5轮",
-      "verdict": "等待结果",
-      "convergence": "样本不足",
-      "convergence_detail": "仅有 0 个 epoch，至少需要 10 个 epoch 判断趋势",
-      "log_evidence": "日志 status=trained · 完成 0/5 轮",
+      "module_usefulness": "数据不完整",
+      "verdict": "中途停止",
+      "convergence": "未训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
+      "log_evidence": "日志未正常收尾 · 完成 0/5 轮 · 不计入已训练 · 未记录结束错误",
       "error": "",
       "image_url": "",
       "module": "aifi",
@@ -1019,10 +1052,10 @@
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
       "delta_runtime_seconds": "+152.3",
-      "data_status": "耗时已从结果/日志补算；缺mAP：未找到results.csv"
+      "data_status": "耗时已从结果/日志补算；训练未正常收尾：不计入已训练；缺最终mAP：未完成验证"
     },
     {
-      "rank": 29,
+      "rank": 30,
       "model": "yolo11-AggregatedAttention.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1040,7 +1073,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 0/5 轮 · 平均 ?s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 127.0s，完成 0 轮，平均 127.0s/轮",
       "image_url": "",
@@ -1054,7 +1087,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 30,
+      "rank": 31,
       "model": "yolo11-ASF-P2.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1072,7 +1105,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 0/5 轮 · 平均 ?s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 124.5s，完成 0 轮，平均 124.5s/轮",
       "image_url": "",
@@ -1086,7 +1119,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 31,
+      "rank": 32,
       "model": "yolo11-ASSR.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1104,7 +1137,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · NameError: name 'selective_scan_fn' is not defined",
       "error": "NameError: name 'selective_scan_fn' is not defined",
       "image_url": "",
@@ -1118,7 +1151,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 32,
+      "rank": 33,
       "model": "yolo11-attention.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1136,7 +1169,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · IndexError: list index out of range",
       "error": "IndexError: list index out of range",
       "image_url": "",
@@ -1150,7 +1183,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 33,
+      "rank": 34,
       "model": "yolo11-bifpn-GLSA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1168,7 +1201,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 0/5 轮 · 平均 ?s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 2 轮，平均 60.1s/轮",
       "image_url": "",
@@ -1182,7 +1215,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 34,
+      "rank": 35,
       "model": "yolo11-C2ASSA.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1200,7 +1233,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: shape '[1, 3, 4, 5, 4, 1]' is invalid for input of size 252",
       "error": "RuntimeError: shape '[1, 3, 4, 5, 4, 1]' is invalid for input of size 252",
       "image_url": "",
@@ -1214,7 +1247,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 35,
+      "rank": 36,
       "model": "yolo11-C2DPB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1232,7 +1265,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 3",
       "error": "RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 3",
       "image_url": "",
@@ -1246,7 +1279,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 36,
+      "rank": 37,
       "model": "yolo11-C2Pola-DYT.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1264,7 +1297,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 1",
       "error": "RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 1",
       "image_url": "",
@@ -1278,7 +1311,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 37,
+      "rank": 38,
       "model": "yolo11-C2Pola.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1296,7 +1329,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 1",
       "error": "RuntimeError: The size of tensor a (252) must match the size of tensor b (400) at non-singleton dimension 1",
       "image_url": "",
@@ -1310,7 +1343,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 38,
+      "rank": 39,
       "model": "yolo11-C2PSA-FMFFN.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1328,7 +1361,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · EinopsError: Error while processing rearrange-reduction pattern \"b c (w1 p1) (w2 p2) -> b w1 w2 p1 p2 c\".  Inp",
       "error": "EinopsError: Error while processing rearrange-reduction pattern \"b c (w1 p1) (w2 p2) -> b w1 w2 p1 p2 c\".  Input tensor shape: torch.Size([32, 128, 12, 21]). Additional info: {'p1': 4, 'p2': 4}.  Shape mismatch, can't divide axis of length 21 in chunks of 4",
       "image_url": "",
@@ -1342,7 +1375,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 39,
+      "rank": 40,
       "model": "yolo11-C3k2-AggregatedAtt.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1360,7 +1393,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: The size of tensor a (1008) must match the size of tensor b (1600) at non-singleton dimension 2",
       "error": "RuntimeError: The size of tensor a (1008) must match the size of tensor b (1600) at non-singleton dimension 2",
       "image_url": "",
@@ -1374,7 +1407,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 40,
+      "rank": 41,
       "model": "yolo11-C3k2-AKConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1392,7 +1425,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 status=skipped_timeout · 完成 0/5 轮 · 平均 ?s/轮",
       "error": "TrainingTimeout: 训练超时：已运行 120.2s，完成 0 轮，平均 120.2s/轮",
       "image_url": "",
@@ -1406,7 +1439,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 41,
+      "rank": 42,
       "model": "yolo11-C3k2-CAMixer.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1424,7 +1457,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: expected scalar type Half but found Float",
       "error": "RuntimeError: expected scalar type Half but found Float",
       "image_url": "",
@@ -1438,7 +1471,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 42,
+      "rank": 43,
       "model": "yolo11-C3k2-CloAtt.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -1456,7 +1489,7 @@
       "module_usefulness": "跳过/不兼容",
       "verdict": "跳过/不兼容",
       "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
       "log_evidence": "日志 failed · RuntimeError: shape '[32, 2, -1, 4, 63]' is invalid for input of size 61440",
       "error": "RuntimeError: shape '[32, 2, -1, 4, 63]' is invalid for input of size 61440",
       "image_url": "",
@@ -1470,8 +1503,8 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 43,
-      "model": "yolo11-C3k2-ConvFormer.yaml",
+      "rank": 44,
+      "model": "yolo11-C3k2-CTA.yaml",
       "status": "training",
       "best_epoch": "5",
       "precision": "",
@@ -1482,9 +1515,9 @@
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": 11.2,
-      "avg_epoch_seconds": 2.2,
-      "estimated_total_seconds": 11.2,
+      "runtime_seconds": 13.0,
+      "avg_epoch_seconds": 2.6,
+      "estimated_total_seconds": 13.0,
       "delta_map5095": "",
       "delta_parameters_m": "",
       "delta_screen_map5095": "",
@@ -1492,11 +1525,11 @@
       "verdict": "当前训练中",
       "convergence": "未判断",
       "convergence_detail": "当前模型尚未完成5轮，暂不判断收敛",
-      "log_evidence": "实时日志 · epoch 5 / 5 轮 · 5.33 it/s",
+      "log_evidence": "实时日志 · epoch 5 / 5 轮 · 4.74 it/s",
       "data_status": "实时训练中：最终指标待完成5轮验证",
       "error": "",
       "image_url": "",
-      "module": "c3k2-convformer",
+      "module": "c3k2-cta",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达"
     }
