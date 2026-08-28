@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maize Field Lab · YOLO11n Batch</title>
+  <style>
+    :root { --ink:#25332b; --muted:#66736a; --paper:#f0f0e9; --panel:#fbfaf5; --line:#d2d8cf; --maize:#ad8a4a; --leaf:#52765f; --rust:#9b6d5f; --shadow:0 14px 36px rgba(38,54,44,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:linear-gradient(135deg,#f3f2ed 0%,var(--paper) 52%,#e9eee8 100%); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    .wrap { max-width:1680px; margin:0 auto; padding:34px 28px 56px; }
+    header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:26px; }
+    .eyebrow { color:var(--leaf); font:700 12px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:8px 0 6px; font:800 clamp(32px,5vw,68px)/.96 Georgia,serif; letter-spacing:-.045em; }
+    .lede { max-width:590px; color:var(--muted); margin:0; line-height:1.65; }
+    .pulse { display:flex; align-items:center; gap:9px; color:var(--leaf); font:700 12px ui-monospace,SFMono-Regular,Consolas,monospace; white-space:nowrap; }
+    .tools { display:flex; align-items:center; gap:14px; }
+    .theme { border:1px solid var(--line); border-radius:999px; padding:9px 12px; color:var(--ink); background:var(--panel); cursor:pointer; font:700 12px ui-monospace,monospace; }
+    .dot { width:10px; height:10px; border-radius:50%; background:var(--leaf); box-shadow:0 0 0 6px rgba(90,143,103,.13); animation:soft-pulse 2.8s ease-in-out infinite; }
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .card { background:rgba(251,250,245,.96); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:18px; padding:20px; }
+    .metric-label { color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    .metric { margin-top:11px; font:800 35px/1 Georgia,serif; }
+    .metric small { font:600 14px ui-monospace,monospace; color:var(--muted); }
+    .progress-card { margin:14px 0; display:grid; grid-template-columns:1.3fr 1fr; gap:20px; align-items:center; }
+    .progress-title { display:flex; justify-content:space-between; gap:16px; margin-bottom:12px; font-weight:750; }
+    .bar { height:14px; background:#d3ddd4; border-radius:99px; overflow:hidden; }
+    .bar > i { display:block; height:100%; width:0%; background:linear-gradient(110deg,var(--maize) 0%,var(--maize) 42%,rgba(255,255,255,.42) 50%,var(--maize) 58%,var(--maize) 100%); background-size:220% 100%; border-radius:99px; transition:width .5s ease; animation:progress-flow 3.6s linear infinite; }
+    .current { position:relative; overflow:hidden; border-left:5px solid var(--maize); background:#f4f0e3; padding:18px 18px 16px; }
+    .current::after { content:""; position:absolute; right:-38px; top:-42px; width:120px; height:120px; border:1px solid rgba(173,138,74,.24); border-radius:50%; box-shadow:0 0 0 16px rgba(173,138,74,.05),0 0 0 32px rgba(173,138,74,.035); pointer-events:none; }
+    .current-kicker { display:flex; align-items:center; gap:8px; color:var(--leaf); font:800 10px ui-monospace,monospace; letter-spacing:.13em; text-transform:uppercase; }
+    .current-led { width:7px; height:7px; border-radius:50%; background:var(--leaf); box-shadow:0 0 0 4px rgba(82,118,95,.13); }
+    .current h2 { margin:8px 0 12px; font:800 24px Georgia,serif; }
+    .current-model { position:relative; z-index:1; padding:11px 12px; border:1px solid rgba(173,138,74,.34); border-radius:10px; color:var(--ink); background:rgba(251,250,245,.76); font:700 17px/1.35 ui-monospace,monospace; overflow-wrap:anywhere; }
+    .current-meta { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; color:var(--muted); font:600 11px ui-monospace,monospace; }
+    .current-meta span { padding:6px 8px; border:1px solid rgba(102,115,106,.24); border-radius:7px; background:rgba(251,250,245,.58); }
+    .main { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:14px; margin-top:14px; }
+    .section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; }
+    h2 { margin:0; font:800 26px Georgia,serif; }
+    .small { color:var(--muted); font-size:12px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { padding:10px 8px; color:var(--muted); text-align:left; font:700 11px ui-monospace,monospace; letter-spacing:.08em; text-transform:uppercase; border:1px solid var(--line); background:rgba(173,138,74,.10); }
+    th button { border:0; padding:0; color:inherit; background:transparent; cursor:pointer; font:inherit; text-align:left; }
+    th button:hover, th button:focus-visible { color:var(--leaf); outline:2px solid var(--maize); outline-offset:3px; }
+    td { padding:11px 8px; border:1px solid var(--line); vertical-align:top; white-space:nowrap; }
+    tr:first-child td { background:linear-gradient(90deg,rgba(173,138,74,.12),transparent); }
+    .rank { color:var(--leaf); font:800 18px Georgia,serif; }
+    .model { max-width:180px; font-weight:750; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .detail-btn { border:1px solid var(--line); border-radius:999px; padding:6px 9px; color:var(--ink); background:var(--panel); cursor:pointer; font:700 11px ui-monospace,monospace; white-space:nowrap; }
+    .detail-btn:hover,.detail-btn:focus-visible { color:var(--leaf); border-color:var(--leaf); outline:2px solid rgba(240,189,62,.45); outline-offset:2px; }
+    .detail-panel { margin-top:14px; border:1px solid var(--line); border-left:5px solid var(--maize); border-radius:14px; padding:18px; background:rgba(173,138,74,.10); }
+    .detail-panel[hidden] { display:none; }
+    .detail-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:14px; }
+    .detail-head h3 { margin:0; font:800 22px Georgia,serif; }
+    .detail-close { border:0; background:transparent; color:var(--muted); cursor:pointer; font-size:20px; }
+    .detail-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .detail-item { border:1px solid var(--line); border-radius:10px; padding:11px; background:var(--panel); }
+    .detail-item b { display:block; margin-bottom:5px; color:var(--muted); font:700 10px ui-monospace,monospace; letter-spacing:.08em; text-transform:uppercase; }
+    .detail-item span { line-height:1.55; font-size:13px; overflow-wrap:anywhere; }
+    .detail-copy { margin:14px 0 0; color:var(--muted); line-height:1.7; font-size:13px; }
+    .detail-link { display:inline-block; margin-top:12px; color:var(--leaf); font-weight:750; }
+    .pager { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:12px; }
+    .pager button { border:1px solid var(--line); border-radius:8px; padding:7px 10px; color:var(--ink); background:var(--panel); cursor:pointer; font:700 12px ui-monospace,monospace; }
+    .pager button:disabled { opacity:.45; cursor:not-allowed; }
+    .page-info { color:var(--muted); font:700 12px ui-monospace,monospace; }
+    .status { display:inline-flex; padding:4px 7px; border-radius:999px; background:#e8f1e8; color:#397046; font:700 11px ui-monospace,monospace; }
+    .status.failed { background:#f8e7e1; color:#9f4938; }
+    .score { font:800 19px Georgia,serif; }
+    .delta.up { color:var(--leaf); font-weight:800; }
+    .delta.down { color:var(--rust); }
+    .verdict { color:var(--muted); font-size:11px; white-space:nowrap; }
+    .chart-card { margin-top:14px; }
+    .chart { width:100%; min-height:300px; display:block; overflow:visible; }
+    .chart-grid { stroke:var(--line); stroke-width:1; stroke-dasharray:4 5; }
+    .chart-axis { fill:var(--muted); font:11px ui-monospace,monospace; }
+    .chart-line { fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+    .curve-legend { display:flex; flex-wrap:wrap; gap:9px 16px; margin-top:8px; }
+    .curve-legend span { color:var(--muted); font:700 11px ui-monospace,monospace; }
+    .metric-select { border:1px solid var(--line); border-radius:8px; padding:7px 9px; color:var(--ink); background:var(--panel); font:700 12px ui-monospace,monospace; }
+    .toggle-option { display:inline-flex; align-items:center; gap:6px; color:var(--muted); font:700 11px ui-monospace,monospace; white-space:nowrap; }
+    .toggle-option input { accent-color:var(--leaf); }
+    .gallery { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; }
+    .result-shot { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel); }
+    .result-shot img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#ecebe4; }
+    .result-shot figcaption { padding:10px; color:var(--muted); font:700 11px/1.4 ui-monospace,monospace; overflow-wrap:anywhere; }
+    .curve-legend i { display:inline-block; width:18px; height:3px; margin:0 5px 3px 0; vertical-align:middle; }
+    .side p { line-height:1.65; color:var(--muted); font-size:13px; }
+    .legend { display:grid; gap:10px; margin-top:18px; }
+    .legend div { display:flex; justify-content:space-between; padding-bottom:10px; border-bottom:1px dashed var(--line); font-size:13px; }
+    footer { margin-top:22px; color:var(--muted); font:12px ui-monospace,monospace; }
+    @media(max-width:900px){ header,.progress-card,.main{grid-template-columns:1fr;display:grid}.grid{grid-template-columns:repeat(2,1fr)} header{align-items:start}.card{padding:16px}.detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media(max-width:560px){ .wrap{padding:24px 14px 42px}.grid{grid-template-columns:1fr 1fr} table{font-size:12px} th:nth-child(4),td:nth-child(4),th:nth-child(5),td:nth-child(5){display:none} }
+    @media(prefers-reduced-motion:reduce){ *{scroll-behavior:auto!important;transition:none!important} }
+    @keyframes progress-flow { from { background-position:120% 0; } to { background-position:-120% 0; } }
+    @keyframes soft-pulse { 0%,100% { opacity:.72; box-shadow:0 0 0 5px rgba(90,143,103,.10); } 50% { opacity:1; box-shadow:0 0 0 8px rgba(90,143,103,.03); } }
+    @media(prefers-reduced-motion:reduce){ .dot,.bar > i { animation:none!important; } }
+    body.dark { --ink:#e8eee9; --muted:#aebbb1; --paper:#141a16; --panel:#1b241e; --line:#3b4a40; --maize:#c7aa6d; --leaf:#8db59a; --rust:#d39682; --shadow:0 18px 46px rgba(0,0,0,.24); background:linear-gradient(135deg,#161d18 0%,var(--paper) 58%,#18231c 100%); }
+    body.dark .current { background:#29291f; }
+    body.dark .bar { background:#2a352e; }
+    body.dark th { background:rgba(199,170,109,.09); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准，追踪当前模型、验证轮次与 mAP50-95 差异。页面只读，不会干扰 GPU 训练。</p></div>
+      <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="screen">5轮初筛</option><option value="full-useful">100轮正式</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>
+    </header>
+    <section class="grid">
+      <article class="card"><div class="metric-label">已记录模型</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
+      <article class="card"><div class="metric-label">已训练完成</div><div class="metric" id="trained">—</div></article>
+      <article class="card"><div class="metric-label">当前最佳 mAP50-95</div><div class="metric" id="best">—</div></article>
+      <article class="card"><div class="metric-label">失败 / OOM / 超时</div><div class="metric" id="failed">—</div></article>
+    </section>
+    <section class="card progress-card">
+      <div><div class="progress-title"><span>批量实验进度</span><span id="progressText">—</span></div><div class="bar"><i id="progressBar"></i></div></div>
+      <div class="current"><div class="current-kicker"><i class="current-led"></i><span>实时训练状态</span></div><h2 id="currentTitle">正在训练</h2><div class="current-model" id="currentModel">等待训练日志…</div><div class="current-meta"><span id="currentEpoch">epoch —</span><span id="currentSpeed">速度 —</span><span id="currentEta">预计剩余 —</span><span id="currentMap">mAP50-95 —</span></div></div>
+    </section>
+    <section class="main">
+      <article class="card"><div class="section-head"><h2>超过基准的模块</h2><span class="small">当前视图：<b id="modeLabel">5轮初筛</b> · 可切换显示未超过模块 · 完整模型名在说明里</span></div><div style="overflow:auto"><table><thead><tr><th>#</th><th>模块名</th><th>状态</th><th><button class="sortable" data-key="parameters_m">参数量 ↕</button></th><th><button class="sortable" data-key="layers">层数 ↕</button></th><th><button class="sortable" data-key="gflops">GFLOPs ↕</button></th><th>训练用时</th><th>平均/轮</th><th>预计总时长</th><th><button class="sortable" data-key="best_epoch">epoch ↕</button></th><th><button class="sortable" data-key="map50">mAP50 ↕</button></th><th><button class="sortable" data-key="map5095">mAP50-95 ↕</button></th><th><button class="sortable" data-key="delta_parameters_m">Δ参数M ↕</button></th><th><button class="sortable" data-key="delta_map5095">Δ最终mAP ↕</button></th><th><button class="sortable" data-key="delta_screen_map5095">Δ前5轮mAP ↕</button></th><th>前5轮模块有效性</th><th>收敛状态</th><th>判断</th><th>说明</th></tr></thead><tbody id="ranking"><tr><td colspan="19" class="small">正在读取…</td></tr></tbody></table></div><div class="pager"><button id="prevPage" type="button">上一页</button><span id="pageInfo" class="page-info">—</span><button id="nextPage" type="button">下一页</button></div><div id="detailPanel" class="detail-panel" hidden></div></article>
+      <aside class="card side"><div class="section-head"><h2>实验说明</h2></div><p>5轮初筛只判断模块是否超过同预算的 yolo11n 5轮基准；100轮最终训练再判断是否真正优于 yolo11n。模块位置和作用为自动注释，论文中引用前需按 YAML 逐层核对。</p><div class="legend"><div><span>基准最终 mAP50-95</span><b id="baselineMap">—</b></div><div><span>基准前5轮 mAP50-95</span><b id="baselineScreenMap">—</b></div><div><span>构建成功</span><b id="buildOk">—</b></div><div><span>训练完成</span><b id="trainedSide">—</b></div><div><span>OOM 跳过</span><b id="oomSide">—</b></div><div><span>待处理</span><b id="pending">—</b></div><div><span>更新时间</span><b id="updated">—</b></div></div></aside>
+    </section>
+     <section class="card chart-card"><div class="section-head"><h2>验证精度随 epoch 变化</h2><div><select id="curveMetric" class="metric-select" aria-label="选择折线指标"><option value="map5095">mAP50-95</option><option value="map50">mAP50</option><option value="precision">Precision</option><option value="recall">Recall</option></select><span class="small">基准固定为金色 · 只显示超过同轮次基准的模型</span></div></div><svg id="curveChart" class="chart" viewBox="0 0 960 340" role="img" aria-label="验证指标随 epoch 变化折线图"></svg><div id="curveLegend" class="curve-legend"></div></section>
+    <section class="card chart-card"><div class="section-head"><h2>训练结果图</h2><span class="small">各模型 results.png · 点击图片可放大</span></div><div id="gallery" class="gallery"><p class="small">训练完成后显示结果图。</p></div></section>
+    <footer>数据源：C:\Users\xkai2\Desktop\训练集\yolov11\logs\batch_experiments · 自动刷新：5 秒</footer>
+  </main>
+  <script>
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const pct = (v) => { const n = Number(v); return Number.isFinite(n) ? n.toFixed(4) : '—'; };
+    const param = (v) => { const n = Number(v); return Number.isFinite(n) ? n.toFixed(3) + 'M' : '—'; };
+    const delta = (v) => { const n = Number(v); return Number.isFinite(n) ? (n > 0 ? '+' : '') + n.toFixed(4) : '—'; };
+    const duration = (v) => { const n = Number(v); if(!Number.isFinite(n) || n < 0) return '—'; const total = Math.round(n); const h=Math.floor(total/3600), m=Math.floor((total%3600)/60), s=total%60; return h ? `${h}时${String(m).padStart(2,'0')}分` : m ? `${m}分${String(s).padStart(2,'0')}秒` : `${s}秒`; };
+    const statusLabel = {reference:'基准',reference_screen:'基准',trained:'已训练',build_ok:'可构建',skipped_oom:'OOM跳过',skipped_timeout:'超时跳过',failed:'结构失败'};
+    let currentMode = 'screen';
+    const savedTheme = localStorage.getItem('maize-theme'); if(savedTheme === 'dark') document.body.classList.add('dark');
+    document.querySelector('#themeToggle').addEventListener('click', () => { const dark = document.body.classList.toggle('dark'); localStorage.setItem('maize-theme', dark ? 'dark' : 'light'); });
+    document.querySelector('#runMode').addEventListener('change', (event) => { currentMode = event.target.value; document.querySelector('#detailPanel').hidden = true; refresh(); });
+    async function refresh(){
+      try {
+        let d, staticSnapshot = false; try { const res = await fetch('/api/status?mode=' + encodeURIComponent(currentMode) + '&t=' + Date.now(), {cache:'no-store'}); if(!res.ok) throw Error('offline'); d = await res.json(); } catch(apiError) { const backup = await fetch('status-' + encodeURIComponent(currentMode) + '.json?t=' + Date.now(), {cache:'no-store'}); if(!backup.ok) throw apiError; d = await backup.json(); staticSnapshot = true; }
+        document.querySelector('#connection').textContent = staticSnapshot ? 'Netlify快照' : '实时连接';
+        document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : '100轮正式';
+        document.querySelector('#recorded').innerHTML = `${d.recorded} <small>/ ${d.total}</small>`;
+        document.querySelector('#trained').textContent = d.trained;
+        const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0); document.querySelector('#failed').textContent = failedTotal;
+        const candidates = d.ranking.filter(x => !String(x.status).startsWith('reference') && x.map5095 !== ''); const best = candidates[0]; document.querySelector('#best').textContent = best ? pct(best.map5095) : '—';
+        const done = d.recorded, total = d.total || 1, progress = Math.min(100, done / total * 100); document.querySelector('#progressBar').style.width = progress + '%'; document.querySelector('#progressText').textContent = `${done} / ${d.total} · ${progress.toFixed(1)}%`;
+        const c = d.current || {}; const active = c.active === true; document.querySelector('#currentTitle').textContent = active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = c.epoch !== undefined ? `epoch ${c.epoch} / ${c.total_epochs || '—'}` : 'epoch —'; document.querySelector('#currentSpeed').textContent = active && c.speed_it_s ? `速度 ${Number(c.speed_it_s).toFixed(2)} it/s` : '速度 —'; document.querySelector('#currentEta').textContent = active && c.eta_text && c.eta_text !== '—' ? `预计剩余 ${c.eta_text}` : '预计剩余 —'; document.querySelector('#currentMap').textContent = c.live_map5095 ? `mAP50-95 ${pct(c.live_map5095)}` : 'mAP50-95 —';
+        document.querySelector('#baselineMap').textContent = pct(d.baseline?.map5095); document.querySelector('#baselineScreenMap').textContent = pct(d.baseline?.screen_map5095); document.querySelector('#buildOk').textContent = d.build_ok; document.querySelector('#trainedSide').textContent = d.trained; document.querySelector('#oomSide').textContent = d.skipped_oom; document.querySelector('#pending').textContent = d.pending; document.querySelector('#updated').textContent = d.updated_at.split('T').pop();
+        const visibleRows = (d.ranking || []).filter(shouldShowRow); renderTable(visibleRows);
+        drawChart(d.curves || []); renderGallery(visibleRows);
+      } catch(e) { document.querySelector('#connection').textContent = '等待本机接口'; }
+      setTimeout(refresh, 300000);
+    }
+    let latestRanking = [], latestSorted = [], sortKey = 'map5095', sortDir = -1, currentPage = 0; const pageSize = 24;
+    document.querySelectorAll('.sortable').forEach(button => button.addEventListener('click', () => { const key = button.dataset.key; if(sortKey === key) sortDir *= -1; else { sortKey = key; sortDir = -1; } currentPage = 0; renderTable(latestRanking); }));
+    document.querySelector('#prevPage').addEventListener('click', () => { if(currentPage > 0){ currentPage--; renderTable(latestRanking); } });
+    document.querySelector('#nextPage').addEventListener('click', () => { if((currentPage + 1) * pageSize < latestSorted.length){ currentPage++; renderTable(latestRanking); } });
+    const shortModel = (value, moduleName) => { const module = String(moduleName ?? '').trim(); if(module && module !== '—') return module.length > 24 ? module.slice(0,23) + '…' : module; const full = String(value ?? ''); const base = full.replace(/\.yaml$/i,'').replace(/^yolo11[-_]/i,''); return base.length > 24 ? base.slice(0,23) + '…' : base; };
+    let showUseless = false;
+    document.querySelector('#showUseless').addEventListener('change', (event) => { showUseless = event.target.checked; currentPage = 0; document.querySelector('#detailPanel').hidden = true; refresh(); });
+    const isAboveBaseline = (row) => String(row?.status || '').startsWith('reference') || (currentMode === 'screen' ? Number(row?.delta_screen_map5095) > 0 : Number(row?.delta_map5095) > 0);
+    const shouldShowRow = (row) => showUseless || isAboveBaseline(row);
+    function renderTable(rows){
+      latestRanking = rows || []; const sorted = [...latestRanking].sort((a,b) => { const ar=String(a.status).startsWith('reference'), br=String(b.status).startsWith('reference'); if(ar&&!br) return -1; if(br&&!ar) return 1; const av=Number(a[sortKey]), bv=Number(b[sortKey]); if(Number.isFinite(av)&&Number.isFinite(bv)) return (av-bv)*sortDir; return String(a[sortKey]||'').localeCompare(String(b[sortKey]||''))*sortDir; }); latestSorted = sorted; if(currentPage * pageSize >= sorted.length) currentPage = Math.max(0, Math.ceil(sorted.length / pageSize) - 1); const pageRows = sorted.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+      document.querySelector('#ranking').innerHTML = sorted.length ? pageRows.map((x, i) => { const globalIndex = currentPage * pageSize + i; return `<tr><td class="rank">${esc(x.rank)}</td><td class="model" title="完整模型：${esc(x.model)}">${esc(shortModel(x.model, x.module))}</td><td><span class="status ${x.status==='failed'||x.status==='skipped_oom'||x.status==='skipped_timeout'?'failed':''}">${esc(statusLabel[x.status] || x.status)}</span></td><td>${param(x.parameters_m)}</td><td>${esc(x.layers || '—')}</td><td>${esc(x.gflops || '—')}</td><td>${duration(x.runtime_seconds)}</td><td>${duration(x.avg_epoch_seconds)}</td><td>${duration(x.estimated_total_seconds)}</td><td>${esc(x.best_epoch || '—')}</td><td>${pct(x.map50)}</td><td class="score">${pct(x.map5095)}</td><td class="delta ${Number(x.delta_parameters_m)>=0?'up':'down'}">${delta(x.delta_parameters_m)}</td><td class="delta ${Number(x.delta_map5095)>=0?'up':'down'}">${delta(x.delta_map5095)}</td><td class="delta ${Number(x.delta_screen_map5095)>=0?'up':'down'}">${delta(x.delta_screen_map5095)}</td><td class="verdict">${esc(x.module_usefulness || '—')}</td><td title="${esc(x.convergence_detail || '')}">${esc(x.convergence || '—')}</td><td class="verdict">${esc(x.verdict || '—')}</td><td><button class="detail-btn" type="button" data-detail-index="${globalIndex}">查看</button></td></tr>`; }).join('') : '<tr><td colspan="19" class="small">训练尚未产生可比较结果。</td></tr>';
+      document.querySelector('#pageInfo').textContent = sorted.length ? `第 ${currentPage + 1} / ${Math.ceil(sorted.length / pageSize)} 页 · 共 ${sorted.length} 个` : '—'; document.querySelector('#prevPage').disabled = currentPage === 0; document.querySelector('#nextPage').disabled = (currentPage + 1) * pageSize >= sorted.length;
+      document.querySelectorAll('[data-detail-index]').forEach(button => button.addEventListener('click', () => showDetails(Number(button.dataset.detailIndex))));
+    }
+    function showDetails(index){
+      const x = latestSorted[index]; if(!x) return; const panel = document.querySelector('#detailPanel');
+      const image = x.image_url ? `<a class="detail-link" href="${esc(x.image_url)}" target="_blank" rel="noreferrer">打开该模型 results.png</a>` : '';
+      panel.innerHTML = `<div class="detail-head"><h3>${esc(x.model)} · 模块说明</h3><button class="detail-close" type="button" aria-label="关闭说明">×</button></div><div class="detail-grid"><div class="detail-item"><b>模块</b><span>${esc(x.module || '—')}</span></div><div class="detail-item"><b>所在位置</b><span>${esc(x.position || '—')}</span></div><div class="detail-item"><b>训练用时</b><span>${duration(x.runtime_seconds)} · 平均 ${duration(x.avg_epoch_seconds)}/轮</span></div><div class="detail-item"><b>预计总时长</b><span>${duration(x.estimated_total_seconds)} · 相对基准 ${duration(x.delta_runtime_seconds)}</span></div><div class="detail-item"><b>参数变化</b><span>${param(x.parameters_m)}（相对基准 ${delta(x.delta_parameters_m)}M）</span></div><div class="detail-item"><b>计算量</b><span>${esc(x.gflops || '—')} GFLOPs · ${esc(x.layers || '—')} 层</span></div><div class="detail-item"><b>前5轮初筛</b><span>${esc(x.module_usefulness || '—')} · Δ${delta(x.delta_screen_map5095)}</span></div><div class="detail-item"><b>收敛状态</b><span>${esc(x.convergence || '—')}</span></div><div class="detail-item"><b>最终判断</b><span>${esc(x.verdict || '—')}</span></div><div class="detail-item"><b>训练状态</b><span>${esc(statusLabel[x.status] || x.status || '—')}</span></div></div><p class="detail-copy"><b>作用解释：</b>${esc(x.effect || '暂无自动解释，请按 YAML 逐层核对。')}<br><b>收敛依据：</b>${esc(x.convergence_detail || '当前暂无足够曲线数据。')}<br><b>耗时对比：</b>${duration(x.runtime_seconds)}，预计完成 ${duration(x.estimated_total_seconds)}。</p>${image}<button class="detail-close" type="button" style="float:right" aria-label="关闭说明">收起</button>`;
+      panel.hidden = false; panel.querySelectorAll('.detail-close').forEach(button => button.addEventListener('click', () => { panel.hidden = true; })); panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+    document.querySelector('#curveMetric').addEventListener('change', () => drawChart(window.latestCurves || []));
+    function drawChart(curves){
+      window.latestCurves = curves;
+      const svg = document.querySelector('#curveChart'), legend = document.querySelector('#curveLegend'); svg.innerHTML=''; legend.innerHTML=''; if(!curves.length) return;
+      const metric = document.querySelector('#curveMetric').value; const W=960,H=340,L=52,R=18,T=18,B=38,iw=W-L-R,ih=H-T-B; const maxX=Math.max(5,...curves.flatMap(c=>c.points.map(p=>p.epoch))); const x=e=>L+(e/maxX)*iw, y=v=>T+(1-Math.max(0,Math.min(1,v)))*ih;
+      for(let i=0;i<=5;i++){ const yy=T+ih*i/5, val=(1-i/5).toFixed(1); svg.insertAdjacentHTML('beforeend',`<line class="chart-grid" x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}"/><text class="chart-axis" x="8" y="${yy+4}">${val}</text>`); }
+      const tick=Math.max(1,Math.ceil(maxX/5)); for(let e=0;e<=maxX;e+=tick){ const xx=x(e); svg.insertAdjacentHTML('beforeend',`<line class="chart-grid" x1="${xx}" y1="${T}" x2="${xx}" y2="${T+ih}"/><text class="chart-axis" x="${xx-7}" y="${H-10}">${e}</text>`); }
+      curves.forEach(c=>{ const pts=c.points.map(p=>`${x(p.epoch).toFixed(1)},${y(p[metric]).toFixed(1)}`).join(' '); if(pts) svg.insertAdjacentHTML('beforeend',`<polyline class="chart-line" stroke="${c.color}" points="${pts}"/>`); legend.insertAdjacentHTML('beforeend',`<span><i style="background:${c.color}"></i>${esc(c.label)}</span>`); });
+    }
+    function renderGallery(rows){
+      const available = rows.filter(x => x.image_url); const gallery = document.querySelector('#gallery');
+      gallery.innerHTML = available.length ? available.map(x => `<figure class="result-shot"><a href="${esc(x.image_url)}" target="_blank" rel="noreferrer"><img loading="lazy" src="${esc(x.image_url)}" alt="${esc(x.model)} results.png"></a><figcaption>${esc(x.model)}<br>mAP50-95 ${pct(x.map5095)} · ${param(x.parameters_m)}</figcaption></figure>`).join('') : '<p class="small">训练完成后显示结果图。</p>';
+    }
+    refresh();
+  </script>
+</body>
+</html>
