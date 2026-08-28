@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maize Field Lab · YOLO11n Batch</title>
   <style>
-    :root { --ink:#25332b; --muted:#66736a; --paper:#f0f0e9; --panel:#fbfaf5; --line:#d2d8cf; --maize:#ad8a4a; --leaf:#52765f; --rust:#9b6d5f; --shadow:0 14px 36px rgba(38,54,44,.08); }
+    :root { --ink:#233129; --muted:#5e6d63; --paper:#e7ece6; --panel:#f6f8f2; --line:#c5d0c5; --maize:#967331; --leaf:#3f6b50; --rust:#965d4d; --shadow:0 14px 36px rgba(38,54,44,.10); }
     * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); background:linear-gradient(135deg,#f3f2ed 0%,var(--paper) 52%,#e9eee8 100%); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    body { margin:0; color:var(--ink); background:linear-gradient(135deg,#eef1eb 0%,var(--paper) 52%,#dde7df 100%); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
     .wrap { max-width:1680px; margin:0 auto; padding:34px 28px 56px; }
     header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:26px; }
     .eyebrow { color:var(--leaf); font:700 12px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:.16em; text-transform:uppercase; }
@@ -18,7 +18,7 @@
     .theme { border:1px solid var(--line); border-radius:999px; padding:9px 12px; color:var(--ink); background:var(--panel); cursor:pointer; font:700 12px ui-monospace,monospace; }
     .dot { width:10px; height:10px; border-radius:50%; background:var(--leaf); box-shadow:0 0 0 6px rgba(90,143,103,.13); animation:soft-pulse 2.8s ease-in-out infinite; }
     .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-    .card { background:rgba(251,250,245,.96); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:18px; padding:20px; }
+    .card { background:rgba(246,248,242,.96); border:1px solid var(--line); box-shadow:var(--shadow); border-radius:18px; padding:20px; }
     .metric-label { color:var(--muted); font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
     .metric { margin-top:11px; font:800 35px/1 Georgia,serif; }
     .metric small { font:600 14px ui-monospace,monospace; color:var(--muted); }
@@ -26,14 +26,14 @@
     .progress-title { display:flex; justify-content:space-between; gap:16px; margin-bottom:12px; font-weight:750; }
     .bar { height:14px; background:#d3ddd4; border-radius:99px; overflow:hidden; }
     .bar > i { display:block; height:100%; width:0%; background:linear-gradient(110deg,var(--maize) 0%,var(--maize) 42%,rgba(255,255,255,.42) 50%,var(--maize) 58%,var(--maize) 100%); background-size:220% 100%; border-radius:99px; transition:width .5s ease; animation:progress-flow 3.6s linear infinite; }
-    .current { position:relative; overflow:hidden; border-left:5px solid var(--maize); background:#f4f0e3; padding:18px 18px 16px; }
+    .current { position:relative; overflow:hidden; border-left:5px solid var(--maize); background:#edf1e8; padding:18px 18px 16px; }
     .current::after { content:""; position:absolute; right:-38px; top:-42px; width:120px; height:120px; border:1px solid rgba(173,138,74,.24); border-radius:50%; box-shadow:0 0 0 16px rgba(173,138,74,.05),0 0 0 32px rgba(173,138,74,.035); pointer-events:none; }
     .current-kicker { display:flex; align-items:center; gap:8px; color:var(--leaf); font:800 10px ui-monospace,monospace; letter-spacing:.13em; text-transform:uppercase; }
     .current-led { width:7px; height:7px; border-radius:50%; background:var(--leaf); box-shadow:0 0 0 4px rgba(82,118,95,.13); }
     .current h2 { margin:8px 0 12px; font:800 24px Georgia,serif; }
-    .current-model { position:relative; z-index:1; padding:11px 12px; border:1px solid rgba(173,138,74,.34); border-radius:10px; color:var(--ink); background:rgba(251,250,245,.76); font:700 17px/1.35 ui-monospace,monospace; overflow-wrap:anywhere; }
+    .current-model { position:relative; z-index:1; padding:11px 12px; border:1px solid rgba(150,115,49,.38); border-radius:10px; color:var(--ink); background:rgba(246,248,242,.86); font:700 17px/1.35 ui-monospace,monospace; overflow-wrap:anywhere; }
     .current-meta { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; color:var(--muted); font:600 11px ui-monospace,monospace; }
-    .current-meta span { padding:6px 8px; border:1px solid rgba(102,115,106,.24); border-radius:7px; background:rgba(251,250,245,.58); }
+    .current-meta span { padding:6px 8px; border:1px solid rgba(94,109,99,.28); border-radius:7px; background:rgba(246,248,242,.72); }
     .main { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:14px; margin-top:14px; }
     .section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; }
     h2 { margin:0; font:800 26px Georgia,serif; }
