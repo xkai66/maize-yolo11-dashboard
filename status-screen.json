@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T13:23:12+08:00",
+  "updated_at": "2026-08-28T13:28:12+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_123350.csv",
@@ -90,16 +90,13 @@
     "model": "yolo11-C3k2-DCNV2-Dynamic.yaml",
     "total_epochs": 5,
     "phase": "训练准备中",
-    "epoch": 5,
-    "batch": 157,
-    "batch_total": 157,
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_047_yolo11-C3k2-DCNV2-Dynamic2",
+    "active": false,
+    "state": "已停止",
     "speed_it_s": null,
     "eta_seconds": null,
     "eta_text": "—",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_047_yolo11-C3k2-DCNV2-Dynamic",
-    "active": false,
-    "state": "已停止",
-    "log": "batch_screen_20260828_123350.log"
+    "log": "batch_screen_20260828_132500.log"
   },
   "ranking": [
     {
@@ -1602,7 +1599,7 @@
       "rank": 47,
       "model": "yolo11-C3k2-DCNV2-Dynamic.yaml",
       "status": "interrupted",
-      "best_epoch": "5",
+      "best_epoch": "",
       "precision": "",
       "recall": "",
       "map50": "",
@@ -1621,7 +1618,7 @@
       "verdict": "日志中途停止",
       "convergence": "未判断",
       "convergence_detail": "当前模型尚未完成5轮，暂不判断收敛",
-      "log_evidence": "日志未收尾 · 最后记录 epoch 5 / 5",
+      "log_evidence": "日志未收尾 · 最后记录 epoch ? / 5",
       "data_status": "日志未正常收尾：最终指标待确认",
       "error": "",
       "image_url": "",
