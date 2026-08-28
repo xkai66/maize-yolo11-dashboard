@@ -152,7 +152,7 @@
     const pct = (v) => { const n = Number(v); return Number.isFinite(n) ? n.toFixed(4) : '—'; };
     const param = (v) => { const n = Number(v); return Number.isFinite(n) ? n.toFixed(3) + 'M' : '—'; };
     const delta = (v) => { const n = Number(v); return Number.isFinite(n) ? (n > 0 ? '+' : '') + n.toFixed(4) : '—'; };
-    const duration = (v) => { const n = Number(v); if(!Number.isFinite(n) || n < 0) return '—'; const total = Math.round(n); const h=Math.floor(total/3600), m=Math.floor((total%3600)/60), s=total%60; return h ? `${h}时${String(m).padStart(2,'0')}分` : m ? `${m}分${String(s).padStart(2,'0')}秒` : `${s}秒`; };
+    const duration = (v) => { if(v === null || v === undefined || String(v).trim() === '') return '—'; const n = Number(v); if(!Number.isFinite(n) || n < 0) return '—'; const total = Math.round(n); const h=Math.floor(total/3600), m=Math.floor((total%3600)/60), s=total%60; return h ? `${h}时${String(m).padStart(2,'0')}分` : m ? `${m}分${String(s).padStart(2,'0')}秒` : `${s}秒`; };
     const statusLabel = {reference:'基准',reference_screen:'基准',trained:'已训练',build_ok:'可构建',training:'训练中',interrupted:'中途停止',skipped_oom:'OOM跳过',skipped_timeout:'超时跳过',failed:'结构失败'};
     let currentMode = 'screen';
     const savedTheme = localStorage.getItem('maize-theme'); if(savedTheme === 'dark') document.body.classList.add('dark');
