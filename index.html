@@ -94,10 +94,33 @@
     @keyframes progress-flow { from { background-position:120% 0; } to { background-position:-120% 0; } }
     @keyframes soft-pulse { 0%,100% { opacity:.72; box-shadow:0 0 0 5px rgba(90,143,103,.10); } 50% { opacity:1; box-shadow:0 0 0 8px rgba(90,143,103,.03); } }
     @media(prefers-reduced-motion:reduce){ .dot,.bar > i { animation:none!important; } }
-    body.dark { --ink:#e8eee9; --muted:#aebbb1; --paper:#141a16; --panel:#1b241e; --line:#3b4a40; --maize:#c7aa6d; --leaf:#8db59a; --rust:#d39682; --shadow:0 18px 46px rgba(0,0,0,.24); background:linear-gradient(135deg,#161d18 0%,var(--paper) 58%,#18231c 100%); }
-    body.dark .current { background:#29291f; }
-    body.dark .bar { background:#2a352e; }
-    body.dark th { background:rgba(199,170,109,.09); }
+    body.dark { color-scheme:dark; --ink:#f2f7f2; --muted:#c4d0c7; --paper:#0f1512; --panel:#19231d; --line:#4b5e51; --maize:#e4bd68; --leaf:#a8d0b0; --rust:#f0a28c; --shadow:0 18px 46px rgba(0,0,0,.38); background:linear-gradient(135deg,#101712 0%,var(--paper) 58%,#142019 100%); }
+    body.dark .card { background:rgba(25,35,29,.97); border-color:var(--line); }
+    body.dark .lede, body.dark .small, body.dark .page-info, body.dark .verdict, body.dark footer, body.dark .detail-copy { color:var(--muted); }
+    body.dark .theme, body.dark .metric-select, body.dark .detail-btn, body.dark .pager button { color:var(--ink); background:#202d25; border-color:#5a6f60; }
+    body.dark .theme:hover, body.dark .metric-select:focus, body.dark .detail-btn:hover, body.dark .detail-btn:focus-visible, body.dark .pager button:not(:disabled):hover { border-color:var(--maize); color:#fff8e6; background:#29392e; }
+    body.dark .current { background:#202b23; border-left-color:var(--maize); }
+    body.dark .current-model { color:#f7fbf7; background:#2a382f; border-color:#718576; }
+    body.dark .current-meta { color:#d5e0d7; }
+    body.dark .current-meta span { color:#e6efe8; background:#26352b; border-color:#536a5a; }
+    body.dark .bar { background:#2d4033; }
+    body.dark .bar > i { background:linear-gradient(110deg,#d8ad51 0%,#e4bd68 42%,rgba(255,255,255,.72) 50%,#e4bd68 58%,#d8ad51 100%); }
+    body.dark th { color:#dce8df; background:rgba(228,189,104,.16); border-color:#53675a; }
+    body.dark td { color:#edf5ee; border-color:#3f5145; }
+    body.dark tr:first-child td { background:linear-gradient(90deg,rgba(228,189,104,.18),transparent); }
+    body.dark .rank, body.dark .delta.up, body.dark .detail-link { color:#b9e4c1; }
+    body.dark .delta.down { color:#ffb19a; }
+    body.dark .status { color:#d9f5df; background:#245235; border:1px solid #4f9360; }
+    body.dark .status.failed { color:#ffd0c4; background:#5a3028; border-color:#a96758; }
+    body.dark .detail-panel { background:rgba(228,189,104,.13); border-color:#596e5e; }
+    body.dark .detail-item { color:#edf5ee; background:#202d25; border-color:#506558; }
+    body.dark .detail-item b { color:#cbd9cf; }
+    body.dark .detail-close { color:#c4d0c7; }
+    body.dark .chart-grid { stroke:#43564a; }
+    body.dark .chart-axis { fill:#c4d0c7; }
+    body.dark .curve-legend span { color:#d2ded5; }
+    body.dark .result-shot { background:#202d25; border-color:#53675a; }
+    body.dark .result-shot img { background:#101712; }
   </style>
 </head>
 <body>
@@ -145,12 +168,12 @@
         const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0); document.querySelector('#failed').textContent = failedTotal;
         const candidates = d.ranking.filter(x => !String(x.status).startsWith('reference') && x.map5095 !== ''); const best = candidates[0]; document.querySelector('#best').textContent = best ? pct(best.map5095) : '—';
         const done = d.recorded, total = d.total || 1, progress = Math.min(100, done / total * 100); document.querySelector('#progressBar').style.width = progress + '%'; document.querySelector('#progressText').textContent = `${done} / ${d.total} · ${progress.toFixed(1)}%`;
-        const c = d.current || {}; const active = c.active === true; document.querySelector('#currentTitle').textContent = active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = c.epoch !== undefined ? `epoch ${c.epoch} / ${c.total_epochs || '—'}` : 'epoch —'; document.querySelector('#currentSpeed').textContent = active && c.speed_it_s ? `速度 ${Number(c.speed_it_s).toFixed(2)} it/s` : '速度 —'; document.querySelector('#currentEta').textContent = active && c.eta_text && c.eta_text !== '—' ? `预计剩余 ${c.eta_text}` : '预计剩余 —'; document.querySelector('#currentMap').textContent = c.live_map5095 ? `mAP50-95 ${pct(c.live_map5095)}` : 'mAP50-95 —';
+        const c = d.current || {}; const active = c.active === true; const phase = c.phase || '等待首批数据'; document.querySelector('#currentTitle').textContent = active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = c.epoch !== undefined ? `epoch ${c.epoch} / ${c.total_epochs || '—'}` : (active ? phase : 'epoch —'); document.querySelector('#currentSpeed').textContent = active && c.speed_it_s ? `速度 ${Number(c.speed_it_s).toFixed(2)} it/s` : (active ? phase : '速度 —'); document.querySelector('#currentEta').textContent = active && c.eta_text && c.eta_text !== '—' ? `预计剩余 ${c.eta_text}` : (active ? '预计剩余等待首批速度' : '预计剩余 —'); document.querySelector('#currentMap').textContent = c.live_map5095 ? `mAP50-95 ${pct(c.live_map5095)}` : (active ? 'mAP50-95 待验证' : 'mAP50-95 —');
         document.querySelector('#baselineMap').textContent = pct(d.baseline?.map5095); document.querySelector('#baselineScreenMap').textContent = pct(d.baseline?.screen_map5095); document.querySelector('#buildOk').textContent = d.build_ok; document.querySelector('#trainedSide').textContent = d.trained; document.querySelector('#oomSide').textContent = d.skipped_oom; document.querySelector('#pending').textContent = d.pending; document.querySelector('#updated').textContent = d.updated_at.split('T').pop();
         const visibleRows = (d.ranking || []).filter(shouldShowRow); renderTable(visibleRows);
         drawChart(d.curves || []); renderGallery(visibleRows);
       } catch(e) { document.querySelector('#connection').textContent = '等待本机接口'; }
-      setTimeout(refresh, 300000);
+      setTimeout(refresh, staticSnapshot ? 300000 : 3000);
     }
     let latestRanking = [], latestSorted = [], sortKey = 'map5095', sortDir = -1, currentPage = 0; const pageSize = 24;
     document.querySelectorAll('.sortable').forEach(button => button.addEventListener('click', () => { const key = button.dataset.key; if(sortKey === key) sortDir *= -1; else { sortKey = key; sortDir = -1; } currentPage = 0; renderTable(latestRanking); }));
