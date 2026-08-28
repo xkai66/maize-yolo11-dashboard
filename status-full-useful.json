@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T13:28:12+08:00",
+  "updated_at": "2026-08-28T13:33:12+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "",
@@ -10,6 +10,7 @@
   "failed": 0,
   "skipped_oom": 0,
   "skipped_timeout": 0,
+  "skipped_crash": 0,
   "build_ok": 0,
   "pending": 0,
   "baseline": {

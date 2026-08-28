@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T13:28:12+08:00",
+  "updated_at": "2026-08-28T13:33:12+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_123350.csv",
@@ -10,6 +10,7 @@
   "failed": 10,
   "skipped_oom": 0,
   "skipped_timeout": 13,
+  "skipped_crash": 0,
   "build_ok": 0,
   "pending": 244,
   "baseline": {
