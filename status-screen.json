@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026-08-28T12:49:12+08:00",
+  "updated_at": "2026-08-28T12:53:13+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_123350.csv",
   "total": 290,
-  "recorded": 39,
+  "recorded": 40,
   "trained": 17,
-  "failed": 9,
+  "failed": 10,
   "skipped_oom": 0,
   "skipped_timeout": 13,
   "build_ok": 0,
-  "pending": 251,
+  "pending": 250,
   "baseline": {
     "rank": "基准",
     "model": "基准",
@@ -84,17 +84,19 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 40,
+    "index": 41,
     "total": 290,
-    "model": "yolo11-C3k2-CloAtt.yaml",
+    "model": "yolo11-C3k2-ContextGuided.yaml",
     "total_epochs": 5,
-    "phase": "训练准备中",
-    "epoch": 1,
-    "batch": 157,
+    "epoch": "4",
+    "batch": 102,
     "batch_total": 157,
-    "speed_it_s": 4.77,
-    "eta_seconds": 131.7,
-    "eta_text": "约 2分12秒",
+    "speed_it_s": 7.15,
+    "eta_seconds": 7.7,
+    "eta_text": "约 8秒",
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_041_yolo11-C3k2-ContextGuided",
+    "live_map5095": "0.17372",
+    "live_map50": "0.4757",
     "active": true,
     "state": "训练中",
     "log": "batch_screen_20260828_123350.log"
@@ -153,7 +155,8 @@
       "runtime_seconds": 194.5,
       "avg_epoch_seconds": 38.9,
       "estimated_total_seconds": 194.5,
-      "delta_runtime_seconds": "+64.1"
+      "delta_runtime_seconds": "+64.1",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 2,
@@ -184,7 +187,8 @@
       "runtime_seconds": 624.2,
       "avg_epoch_seconds": 124.8,
       "estimated_total_seconds": 624.2,
-      "delta_runtime_seconds": "+493.8"
+      "delta_runtime_seconds": "+493.8",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 3,
@@ -215,7 +219,8 @@
       "runtime_seconds": 179.3,
       "avg_epoch_seconds": 35.9,
       "estimated_total_seconds": 179.3,
-      "delta_runtime_seconds": "+48.9"
+      "delta_runtime_seconds": "+48.9",
+      "data_status": "数据完整"
     },
     {
       "rank": 4,
@@ -246,7 +251,8 @@
       "runtime_seconds": 303.1,
       "avg_epoch_seconds": 60.6,
       "estimated_total_seconds": 303.1,
-      "delta_runtime_seconds": "+172.7"
+      "delta_runtime_seconds": "+172.7",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 5,
@@ -277,7 +283,8 @@
       "runtime_seconds": 166.9,
       "avg_epoch_seconds": 33.4,
       "estimated_total_seconds": 166.9,
-      "delta_runtime_seconds": "+36.5"
+      "delta_runtime_seconds": "+36.5",
+      "data_status": "数据完整"
     },
     {
       "rank": 6,
@@ -308,7 +315,8 @@
       "runtime_seconds": 180.7,
       "avg_epoch_seconds": 36.1,
       "estimated_total_seconds": 180.7,
-      "delta_runtime_seconds": "+50.3"
+      "delta_runtime_seconds": "+50.3",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 7,
@@ -339,7 +347,8 @@
       "runtime_seconds": 170.7,
       "avg_epoch_seconds": 34.1,
       "estimated_total_seconds": 170.7,
-      "delta_runtime_seconds": "+40.3"
+      "delta_runtime_seconds": "+40.3",
+      "data_status": "数据完整"
     },
     {
       "rank": 8,
@@ -370,7 +379,8 @@
       "runtime_seconds": 171.2,
       "avg_epoch_seconds": 34.2,
       "estimated_total_seconds": 171.2,
-      "delta_runtime_seconds": "+40.8"
+      "delta_runtime_seconds": "+40.8",
+      "data_status": "数据完整"
     },
     {
       "rank": 9,
@@ -401,7 +411,8 @@
       "runtime_seconds": 172.8,
       "avg_epoch_seconds": 34.6,
       "estimated_total_seconds": 172.8,
-      "delta_runtime_seconds": "+42.4"
+      "delta_runtime_seconds": "+42.4",
+      "data_status": "数据完整"
     },
     {
       "rank": 10,
@@ -432,7 +443,8 @@
       "runtime_seconds": 165.6,
       "avg_epoch_seconds": 33.1,
       "estimated_total_seconds": 165.6,
-      "delta_runtime_seconds": "+35.2"
+      "delta_runtime_seconds": "+35.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 11,
@@ -463,7 +475,8 @@
       "runtime_seconds": 188.6,
       "avg_epoch_seconds": 37.7,
       "estimated_total_seconds": 188.6,
-      "delta_runtime_seconds": "+58.2"
+      "delta_runtime_seconds": "+58.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 12,
@@ -494,7 +507,8 @@
       "runtime_seconds": 733.1,
       "avg_epoch_seconds": 146.6,
       "estimated_total_seconds": 733.1,
-      "delta_runtime_seconds": "+602.7"
+      "delta_runtime_seconds": "+602.7",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 13,
@@ -525,7 +539,8 @@
       "runtime_seconds": 180.5,
       "avg_epoch_seconds": 36.1,
       "estimated_total_seconds": 180.5,
-      "delta_runtime_seconds": "+50.1"
+      "delta_runtime_seconds": "+50.1",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 14,
@@ -556,7 +571,8 @@
       "runtime_seconds": 207.9,
       "avg_epoch_seconds": 41.6,
       "estimated_total_seconds": 207.9,
-      "delta_runtime_seconds": "+77.5"
+      "delta_runtime_seconds": "+77.5",
+      "data_status": "数据完整"
     },
     {
       "rank": 15,
@@ -587,7 +603,8 @@
       "runtime_seconds": 212.7,
       "avg_epoch_seconds": 42.5,
       "estimated_total_seconds": 212.7,
-      "delta_runtime_seconds": "+82.3"
+      "delta_runtime_seconds": "+82.3",
+      "data_status": "数据完整"
     },
     {
       "rank": 16,
@@ -618,7 +635,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": 60.1,
       "estimated_total_seconds": 300.5,
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 17,
@@ -649,7 +667,8 @@
       "runtime_seconds": 120.1,
       "avg_epoch_seconds": 60.0,
       "estimated_total_seconds": 300.2,
-      "delta_runtime_seconds": "-10.3"
+      "delta_runtime_seconds": "-10.3",
+      "data_status": "数据完整"
     },
     {
       "rank": 18,
@@ -680,7 +699,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": 60.1,
       "estimated_total_seconds": 300.4,
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 19,
@@ -711,7 +731,8 @@
       "runtime_seconds": 150.2,
       "avg_epoch_seconds": 75.1,
       "estimated_total_seconds": 375.4,
-      "delta_runtime_seconds": "+19.8"
+      "delta_runtime_seconds": "+19.8",
+      "data_status": "数据完整"
     },
     {
       "rank": 20,
@@ -742,7 +763,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": 60.1,
       "estimated_total_seconds": 300.5,
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 21,
@@ -773,7 +795,8 @@
       "runtime_seconds": 120.0,
       "avg_epoch_seconds": 60.0,
       "estimated_total_seconds": 300.1,
-      "delta_runtime_seconds": "-10.4"
+      "delta_runtime_seconds": "-10.4",
+      "data_status": "数据完整"
     },
     {
       "rank": 22,
@@ -804,7 +827,8 @@
       "runtime_seconds": 275.9,
       "avg_epoch_seconds": 55.2,
       "estimated_total_seconds": 275.9,
-      "delta_runtime_seconds": "+145.5"
+      "delta_runtime_seconds": "+145.5",
+      "data_status": "耗时已从结果/日志补算"
     },
     {
       "rank": 23,
@@ -835,7 +859,8 @@
       "runtime_seconds": 120.1,
       "avg_epoch_seconds": 60.1,
       "estimated_total_seconds": 300.3,
-      "delta_runtime_seconds": "-10.3"
+      "delta_runtime_seconds": "-10.3",
+      "data_status": "数据完整"
     },
     {
       "rank": 24,
@@ -866,7 +891,8 @@
       "runtime_seconds": 120.1,
       "avg_epoch_seconds": 120.1,
       "estimated_total_seconds": 600.5,
-      "delta_runtime_seconds": "-10.3"
+      "delta_runtime_seconds": "-10.3",
+      "data_status": "数据完整"
     },
     {
       "rank": 25,
@@ -897,7 +923,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": 60.1,
       "estimated_total_seconds": 300.5,
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "数据完整"
     },
     {
       "rank": 26,
@@ -928,7 +955,8 @@
       "runtime_seconds": 282.7,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "+152.3"
+      "delta_runtime_seconds": "+152.3",
+      "data_status": "耗时已从结果/日志补算；缺mAP：未找到results.csv"
     },
     {
       "rank": 27,
@@ -959,7 +987,8 @@
       "runtime_seconds": 127.0,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-3.4"
+      "delta_runtime_seconds": "-3.4",
+      "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
       "rank": 28,
@@ -990,7 +1019,8 @@
       "runtime_seconds": 124.5,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-5.9"
+      "delta_runtime_seconds": "-5.9",
+      "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
       "rank": 29,
@@ -1021,7 +1051,8 @@
       "runtime_seconds": 0.1,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-130.3"
+      "delta_runtime_seconds": "-130.3",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
       "rank": 30,
@@ -1052,7 +1083,8 @@
       "runtime_seconds": 0.0,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-130.4"
+      "delta_runtime_seconds": "-130.4",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
       "rank": 31,
@@ -1083,7 +1115,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
       "rank": 32,
@@ -1114,7 +1147,8 @@
       "runtime_seconds": 66.5,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-63.9"
+      "delta_runtime_seconds": "-63.9",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 33,
@@ -1145,7 +1179,8 @@
       "runtime_seconds": 61.8,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-68.6"
+      "delta_runtime_seconds": "-68.6",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 34,
@@ -1176,7 +1211,8 @@
       "runtime_seconds": 54.5,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-75.9"
+      "delta_runtime_seconds": "-75.9",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 35,
@@ -1207,7 +1243,8 @@
       "runtime_seconds": 63.7,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-66.7"
+      "delta_runtime_seconds": "-66.7",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 36,
@@ -1238,7 +1275,8 @@
       "runtime_seconds": 53.2,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-77.2"
+      "delta_runtime_seconds": "-77.2",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 37,
@@ -1269,7 +1307,8 @@
       "runtime_seconds": 71.6,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-58.8"
+      "delta_runtime_seconds": "-58.8",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 38,
@@ -1300,7 +1339,8 @@
       "runtime_seconds": 120.2,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-10.2"
+      "delta_runtime_seconds": "-10.2",
+      "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
       "rank": 39,
@@ -1331,35 +1371,69 @@
       "runtime_seconds": 65.8,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
-      "delta_runtime_seconds": "-64.6"
+      "delta_runtime_seconds": "-64.6",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
       "rank": 40,
       "model": "yolo11-C3k2-CloAtt.yaml",
-      "status": "training",
-      "best_epoch": "1",
+      "status": "failed",
+      "best_epoch": "",
       "precision": "",
       "recall": "",
       "map50": "",
       "map5095": "",
+      "parameters": "2678608",
+      "parameters_m": "2.678608",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "",
+      "delta_parameters_m": "+0.089",
+      "delta_screen_map5095": "",
+      "module_usefulness": "跳过/不兼容",
+      "verdict": "跳过/不兼容",
+      "convergence": "未训练",
+      "convergence_detail": "该模型未完成训练",
+      "log_evidence": "日志 failed · RuntimeError: shape '[32, 2, -1, 4, 63]' is invalid for input of size 61440",
+      "error": "RuntimeError: shape '[32, 2, -1, 4, 63]' is invalid for input of size 61440",
+      "image_url": "",
+      "module": "c3k2-cloatt",
+      "position": "Backbone / Neck（需按 YAML 逐层核对）",
+      "effect": "引入注意力或特征块，增强显著区域与特征表达",
+      "runtime_seconds": 62.8,
+      "avg_epoch_seconds": "",
+      "estimated_total_seconds": "",
+      "delta_runtime_seconds": "-67.6",
+      "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
+    },
+    {
+      "rank": 41,
+      "model": "yolo11-C3k2-ContextGuided.yaml",
+      "status": "training",
+      "best_epoch": "4",
+      "precision": "",
+      "recall": "",
+      "map50": "0.47570",
+      "map5095": "0.17372",
       "parameters": "",
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": "",
-      "avg_epoch_seconds": "",
-      "estimated_total_seconds": "",
-      "delta_map5095": "",
+      "runtime_seconds": 137.7,
+      "avg_epoch_seconds": 34.4,
+      "estimated_total_seconds": 172.1,
+      "delta_map5095": "-0.0940",
       "delta_parameters_m": "",
-      "delta_screen_map5095": "",
+      "delta_screen_map5095": "-0.0940",
       "module_usefulness": "进行中 · 待完成5轮",
       "verdict": "当前训练中",
       "convergence": "未判断",
       "convergence_detail": "当前模型尚未完成5轮，暂不判断收敛",
-      "log_evidence": "实时日志 · epoch 1 / 5 轮 · 4.77 it/s",
+      "log_evidence": "实时日志 · epoch 4 / 5 轮 · 7.15 it/s",
+      "data_status": "实时训练中：最终指标待完成5轮验证",
       "error": "",
       "image_url": "",
-      "module": "c3k2-cloatt",
+      "module": "c3k2-contextguided",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达"
     }
