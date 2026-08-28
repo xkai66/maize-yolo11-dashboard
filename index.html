@@ -158,7 +158,7 @@
   <main class="wrap">
     <header>
       <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准，追踪当前模型、验证轮次与 mAP50-95 差异。页面只读，不会干扰 GPU 训练。</p></div>
-      <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="screen">5轮初筛</option><option value="full-useful">100轮正式</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>
+      <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="screen">5轮初筛</option><option value="retry-timeout">超时复跑</option><option value="full-useful">100轮正式</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>
     </header>
     <section class="grid">
       <article class="card"><div class="metric-label">已记录模型</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
@@ -195,7 +195,7 @@
       try {
         let d, staticSnapshot = false; try { const res = await fetch('/api/status?mode=' + encodeURIComponent(currentMode) + '&t=' + Date.now(), {cache:'no-store'}); if(!res.ok) throw Error('offline'); d = await res.json(); } catch(apiError) { const backup = await fetch('status-' + encodeURIComponent(currentMode) + '.json?t=' + Date.now(), {cache:'no-store'}); if(!backup.ok) throw apiError; d = await backup.json(); staticSnapshot = true; }
         document.querySelector('#connection').textContent = staticSnapshot ? 'Netlify快照' : '实时连接';
-        document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : '100轮正式';
+        document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : currentMode === 'retry-timeout' ? '超时复跑（180秒/轮）' : '100轮正式';
         document.querySelector('#recorded').innerHTML = `${d.recorded} <small>/ ${d.total}</small>`;
         document.querySelector('#trained').textContent = d.trained;
         const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0) + Number(d.skipped_crash || 0) + Number(d.interrupted || 0); document.querySelector('#failed').textContent = failedTotal;
@@ -217,7 +217,7 @@
     let showUseless = false, statusFilter = 'all';
     document.querySelector('#showUseless').addEventListener('change', (event) => { showUseless = event.target.checked; currentPage = 0; document.querySelector('#detailPanel').hidden = true; refresh(); });
     document.querySelectorAll('.filter-btn').forEach(button => button.addEventListener('click', () => { statusFilter = button.dataset.statusFilter || 'all'; currentPage = 0; document.querySelector('#detailPanel').hidden = true; document.querySelectorAll('.filter-btn').forEach(item => item.classList.toggle('active', item === button)); refresh(); }));
-    const isAboveBaseline = (row) => String(row?.status || '').startsWith('reference') || ['training','interrupted','skipped_crash'].includes(row?.status) || (currentMode === 'screen' ? Number(row?.delta_screen_map5095) > 0 : Number(row?.delta_map5095) > 0);
+    const isAboveBaseline = (row) => String(row?.status || '').startsWith('reference') || ['training','interrupted','skipped_crash'].includes(row?.status) || ((currentMode === 'screen' || currentMode === 'retry-timeout') ? Number(row?.delta_screen_map5095) > 0 : Number(row?.delta_map5095) > 0);
     const shouldShowRow = (row) => statusFilter !== 'all' ? row?.status === statusFilter : (showUseless || isAboveBaseline(row));
     function renderTable(rows){
       latestRanking = rows || []; const sorted = [...latestRanking].sort((a,b) => { const ar=String(a.status).startsWith('reference'), br=String(b.status).startsWith('reference'); if(ar&&!br) return -1; if(br&&!ar) return 1; const av=Number(a[sortKey]), bv=Number(b[sortKey]); if(Number.isFinite(av)&&Number.isFinite(bv)) return (av-bv)*sortDir; return String(a[sortKey]||'').localeCompare(String(b[sortKey]||''))*sortDir; }); latestSorted = sorted; if(currentPage * pageSize >= sorted.length) currentPage = Math.max(0, Math.ceil(sorted.length / pageSize) - 1); const pageRows = sorted.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
