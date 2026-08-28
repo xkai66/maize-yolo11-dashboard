@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-28T15:13:13+08:00",
+  "updated_at": "2026-08-28T15:18:13+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_141418.csv",
@@ -3173,7 +3173,7 @@
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": 73.0,
+      "runtime_seconds": 373.0,
       "avg_epoch_seconds": "",
       "estimated_total_seconds": "",
       "delta_map5095": "",
