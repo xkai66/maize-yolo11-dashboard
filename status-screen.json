@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-08-28T18:33:17+08:00",
+  "updated_at": "2026-08-28T18:38:21+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260828_152555.csv",
   "total": 290,
-  "recorded": 202,
+  "recorded": 204,
   "trained": 22,
   "interrupted": 1,
   "failed": 47,
   "skipped_oom": 0,
-  "skipped_timeout": 127,
+  "skipped_timeout": 129,
   "skipped_crash": 5,
   "build_ok": 0,
-  "pending": 88,
+  "pending": 86,
   "baseline": {
     "rank": "基准",
     "model": "基准",
@@ -86,17 +86,19 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 203,
+    "index": 205,
     "total": 290,
-    "model": "yolo11-GFPN.yaml",
+    "model": "yolo11-GlobalEdgeInformationTransfer1.yaml",
     "total_epochs": 5,
-    "epoch": 1,
-    "batch": 110,
+    "epoch": "1",
+    "batch": 65,
     "batch_total": 157,
-    "speed_it_s": 2.1,
-    "eta_seconds": 321.4,
-    "eta_text": "约 5分21秒",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_203_yolo11-GFPN",
+    "speed_it_s": 2.02,
+    "eta_seconds": 278.7,
+    "eta_text": "约 4分39秒",
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_205_yolo11-GlobalEdgeInformationTransfer1",
+    "live_map5095": "0.00223",
+    "live_map50": "0.00807",
     "active": true,
     "state": "训练中",
     "log": "batch_screen_20260828_152555.log"
@@ -3104,6 +3106,38 @@
     },
     {
       "rank": 94,
+      "model": "yolo11-GFPN.yaml",
+      "status": "skipped_timeout",
+      "best_epoch": "1",
+      "precision": "0.5552",
+      "recall": "0.07898",
+      "map50": "0.0267",
+      "map5095": "0.00635",
+      "parameters": "3763568",
+      "parameters_m": "3.763568",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "-0.2613",
+      "delta_parameters_m": "+1.174",
+      "delta_screen_map5095": "-0.2613",
+      "module_usefulness": "跳过/不兼容",
+      "verdict": "跳过/不兼容",
+      "convergence": "未训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
+      "log_evidence": "日志 status=skipped_timeout · 完成 1/5 轮 · 平均 120.0s/轮",
+      "error": "TrainingTimeout: 训练超时：已运行 120.0s，完成 1 轮，平均 120.0s/轮",
+      "image_url": "",
+      "module": "gfpn",
+      "position": "Neck / 特征融合",
+      "effect": "改变多尺度特征融合路径，增强不同尺度目标信息交互",
+      "runtime_seconds": 120.0,
+      "avg_epoch_seconds": 120.0,
+      "estimated_total_seconds": 600.2,
+      "delta_runtime_seconds": "-10.4",
+      "data_status": "mAP为中途值：未完成5轮，不是最终指标"
+    },
+    {
+      "rank": 95,
       "model": "yolo11-C3k2-DIMB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3135,7 +3169,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 95,
+      "rank": 96,
       "model": "yolo11-C3k2-LFE.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3167,7 +3201,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 96,
+      "rank": 97,
       "model": "yolo11-C3k2-PPA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3199,7 +3233,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 97,
+      "rank": 98,
       "model": "yolo11-C3k2-SCcConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3231,7 +3265,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 98,
+      "rank": 99,
       "model": "yolo11-C3k2-fadc.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3263,7 +3297,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 99,
+      "rank": 100,
       "model": "yolo11-C3k2-WDBB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3295,7 +3329,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 100,
+      "rank": 101,
       "model": "yolo11-C3k2-EMBC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3327,7 +3361,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 101,
+      "rank": 102,
       "model": "yolo11-C3k2-EMSCP.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3359,7 +3393,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 102,
+      "rank": 103,
       "model": "yolo11-C3k2-MutilScaleEdgeInformationSelect.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3391,7 +3425,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 103,
+      "rank": 104,
       "model": "yolo11-C3k2-PoolingFormer.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3423,7 +3457,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 104,
+      "rank": 105,
       "model": "yolo11-EMBSFPN-SC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3455,7 +3489,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 105,
+      "rank": 106,
       "model": "yolo11-dysample.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3487,7 +3521,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 106,
+      "rank": 107,
       "model": "yolo11-C3k2-EMSC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3519,7 +3553,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 107,
+      "rank": 108,
       "model": "yolo11-EMBSFPN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3551,7 +3585,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 108,
+      "rank": 109,
       "model": "yolo11-EIEStem.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3583,7 +3617,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 109,
+      "rank": 110,
       "model": "yolo11-C3k2-RAB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3615,7 +3649,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 110,
+      "rank": 111,
       "model": "yolo11-C3k2-PKI.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3647,7 +3681,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 111,
+      "rank": 112,
       "model": "yolo11-C3k2-DRB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3679,7 +3713,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 112,
+      "rank": 113,
       "model": "yolo11-FeaturePyramidSharedConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3711,7 +3745,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 113,
+      "rank": 114,
       "model": "yolo11-C3k2-DWR.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3743,7 +3777,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 114,
+      "rank": 115,
       "model": "yolo11-FocalModulation.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3775,7 +3809,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 115,
+      "rank": 116,
       "model": "yolo11-bifpn-SDI.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3807,7 +3841,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 116,
+      "rank": 117,
       "model": "yolo11-C3k2-FMB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3839,7 +3873,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 117,
+      "rank": 118,
       "model": "yolo11-C3k2-iRMB-Cascaded.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3871,7 +3905,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 118,
+      "rank": 119,
       "model": "yolo11-CARAFE.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3903,7 +3937,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 119,
+      "rank": 120,
       "model": "yolo11-C3k2-Faster-CGLU.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3935,7 +3969,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 120,
+      "rank": 121,
       "model": "yolo11-C3k2-MutilScaleEdgeInformationEnhance.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3967,7 +4001,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 121,
+      "rank": 122,
       "model": "yolo11-CSP-PMSFA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -3999,7 +4033,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 122,
+      "rank": 123,
       "model": "yolo11-C3k2-Star.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4031,7 +4065,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 123,
+      "rank": 124,
       "model": "yolo11-C3k2-DWR-DRB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4063,7 +4097,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 124,
+      "rank": 125,
       "model": "yolo11-C3k2-SHSA-CGLU.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4095,7 +4129,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 125,
+      "rank": 126,
       "model": "yolo11-DBBNCSPELAN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4127,7 +4161,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 126,
+      "rank": 127,
       "model": "yolo11-C3k2-Star-CAA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4159,7 +4193,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 127,
+      "rank": 128,
       "model": "yolo11-FDPN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4191,7 +4225,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 128,
+      "rank": 129,
       "model": "yolo11-C3k2-GhostDynamicConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4223,7 +4257,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 129,
+      "rank": 130,
       "model": "yolo11-DynamicHGNetV2.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4255,7 +4289,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 130,
+      "rank": 131,
       "model": "yolo11-ContextGuideFPN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4287,7 +4321,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 131,
+      "rank": 132,
       "model": "yolo11-ContextGuidedDown.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4319,7 +4353,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 132,
+      "rank": 133,
       "model": "yolo11-C3k2-MSBlock.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4351,7 +4385,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 133,
+      "rank": 134,
       "model": "yolo11-C3k2-RFCBAMConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4383,7 +4417,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 134,
+      "rank": 135,
       "model": "yolo11-C3k2-MSMHSA-CGLU.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4415,7 +4449,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 135,
+      "rank": 136,
       "model": "yolo11-C3k2-RFAConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4447,7 +4481,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 136,
+      "rank": 137,
       "model": "yolo11-C3k2-iRMB-DRB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4479,7 +4513,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 137,
+      "rank": 138,
       "model": "yolo11-C3k2-MogaBlock.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4511,7 +4545,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 138,
+      "rank": 139,
       "model": "yolo11-DRBNCSPELAN.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4543,7 +4577,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 139,
+      "rank": 140,
       "model": "yolo11-C3k2-REPVGGOREPA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -4575,7 +4609,39 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 140,
+      "rank": 141,
+      "model": "yolo11-GhostHGNetV2.yaml",
+      "status": "skipped_timeout",
+      "best_epoch": "1",
+      "precision": "0.00379",
+      "recall": "0.14322",
+      "map50": "0.0025",
+      "map5095": "0.00063",
+      "parameters": "3182872",
+      "parameters_m": "3.182872",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "-0.2670",
+      "delta_parameters_m": "+0.593",
+      "delta_screen_map5095": "-0.2670",
+      "module_usefulness": "跳过/不兼容",
+      "verdict": "跳过/不兼容",
+      "convergence": "未训练",
+      "convergence_detail": "该模型未完成训练或未形成完整结果",
+      "log_evidence": "日志 status=skipped_timeout · 完成 1/5 轮 · 平均 120.0s/轮",
+      "error": "TrainingTimeout: 训练超时：已运行 120.0s，完成 1 轮，平均 120.0s/轮",
+      "image_url": "",
+      "module": "ghosthgnetv2",
+      "position": "Backbone / 骨干网络",
+      "effect": "修改网络结构或算子，具体作用需结合 YAML 与源码核对",
+      "runtime_seconds": 120.0,
+      "avg_epoch_seconds": 120.0,
+      "estimated_total_seconds": 600.2,
+      "delta_runtime_seconds": "-10.4",
+      "data_status": "mAP为中途值：未完成5轮，不是最终指标"
+    },
+    {
+      "rank": 142,
       "model": "yolo11-AIFI.yaml",
       "status": "interrupted",
       "best_epoch": "",
@@ -4607,7 +4673,7 @@
       "data_status": "耗时已从结果/日志补算；训练未正常收尾：不计入已训练；缺最终mAP：未完成验证"
     },
     {
-      "rank": 141,
+      "rank": 143,
       "model": "yolo11-AggregatedAttention.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -4639,7 +4705,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 142,
+      "rank": 144,
       "model": "yolo11-ASF-P2.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -4671,7 +4737,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 143,
+      "rank": 145,
       "model": "yolo11-ASSR.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4703,7 +4769,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 144,
+      "rank": 146,
       "model": "yolo11-attention.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4735,7 +4801,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 145,
+      "rank": 147,
       "model": "yolo11-bifpn-GLSA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -4767,7 +4833,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 146,
+      "rank": 148,
       "model": "yolo11-C2ASSA.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4799,7 +4865,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 147,
+      "rank": 149,
       "model": "yolo11-C2DPB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4831,7 +4897,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 148,
+      "rank": 150,
       "model": "yolo11-C2Pola-DYT.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4863,7 +4929,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 149,
+      "rank": 151,
       "model": "yolo11-C2Pola.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4895,7 +4961,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 150,
+      "rank": 152,
       "model": "yolo11-C2PSA-FMFFN.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4927,7 +4993,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 151,
+      "rank": 153,
       "model": "yolo11-C3k2-AggregatedAtt.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -4959,7 +5025,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 152,
+      "rank": 154,
       "model": "yolo11-C3k2-AKConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -4991,7 +5057,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 153,
+      "rank": 155,
       "model": "yolo11-C3k2-CAMixer.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5023,7 +5089,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 154,
+      "rank": 156,
       "model": "yolo11-C3k2-CloAtt.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5055,7 +5121,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 155,
+      "rank": 157,
       "model": "yolo11-C3k2-DCNV2-Dynamic.yaml",
       "status": "skipped_crash",
       "best_epoch": "",
@@ -5087,7 +5153,7 @@
       "data_status": "耗时已从结果/日志补算；训练进程异常退出：自动跳过，不计入已训练；缺最终mAP：崩溃前未完成验证"
     },
     {
-      "rank": 156,
+      "rank": 158,
       "model": "yolo11-C3k2-DCNV2.yaml",
       "status": "skipped_crash",
       "best_epoch": "",
@@ -5119,7 +5185,7 @@
       "data_status": "耗时已从结果/日志补算；训练进程异常退出：自动跳过，不计入已训练；缺最终mAP：崩溃前未完成验证"
     },
     {
-      "rank": 157,
+      "rank": 159,
       "model": "yolo11-C3k2-DCNV3.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5151,7 +5217,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 158,
+      "rank": 160,
       "model": "yolo11-C3k2-DCNV4.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5183,7 +5249,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 159,
+      "rank": 161,
       "model": "yolo11-C3k2-DIMB-KAN.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5215,7 +5281,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 160,
+      "rank": 162,
       "model": "yolo11-C3k2-DLKA.yaml",
       "status": "skipped_crash",
       "best_epoch": "",
@@ -5247,7 +5313,7 @@
       "data_status": "耗时已从结果/日志补算；训练进程异常退出：自动跳过，不计入已训练；缺最终mAP：崩溃前未完成验证"
     },
     {
-      "rank": 161,
+      "rank": 163,
       "model": "yolo11-C3k2-DTAB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5279,7 +5345,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 162,
+      "rank": 164,
       "model": "yolo11-C3k2-DynamicFilter.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5311,7 +5377,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 163,
+      "rank": 165,
       "model": "yolo11-C3k2-DySnakeConv.yaml",
       "status": "skipped_crash",
       "best_epoch": "",
@@ -5343,7 +5409,7 @@
       "data_status": "耗时已从结果/日志补算；训练进程异常退出：自动跳过，不计入已训练；缺最终mAP：崩溃前未完成验证"
     },
     {
-      "rank": 164,
+      "rank": 166,
       "model": "yolo11-C3k2-ELGCA.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5375,7 +5441,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 165,
+      "rank": 167,
       "model": "yolo11-C3k2-ELGCACGLU.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5407,7 +5473,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 166,
+      "rank": 168,
       "model": "yolo11-C3k2-ETB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5439,7 +5505,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 167,
+      "rank": 169,
       "model": "yolo11-C3k2-Faster-KAN.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5471,7 +5537,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 168,
+      "rank": 170,
       "model": "yolo11-C3k2-FAT.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5503,7 +5569,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 169,
+      "rank": 171,
       "model": "yolo11-C3k2-FDT.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5535,7 +5601,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 170,
+      "rank": 172,
       "model": "yolo11-C3k2-FFCM.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5567,7 +5633,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 171,
+      "rank": 173,
       "model": "yolo11-C3k2-FocusedLinearAttention.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5599,7 +5665,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 172,
+      "rank": 174,
       "model": "yolo11-C3k2-GlobalFilter.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5631,7 +5697,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 173,
+      "rank": 175,
       "model": "yolo11-C3k2-Heat.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5663,7 +5729,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 174,
+      "rank": 176,
       "model": "yolo11-C3k2-iRMB.yaml",
       "status": "skipped_crash",
       "best_epoch": "",
@@ -5695,7 +5761,7 @@
       "data_status": "耗时已从结果/日志补算；训练进程异常退出：自动跳过，不计入已训练；缺最终mAP：崩溃前未完成验证"
     },
     {
-      "rank": 175,
+      "rank": 177,
       "model": "yolo11-C3k2-JDPM.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5727,7 +5793,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 176,
+      "rank": 178,
       "model": "yolo11-C3k2-Kat.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5759,7 +5825,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 177,
+      "rank": 179,
       "model": "yolo11-C3k2-LVMB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5791,7 +5857,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 178,
+      "rank": 180,
       "model": "yolo11-C3k2-MobileMamba.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -5823,7 +5889,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 179,
+      "rank": 181,
       "model": "yolo11-C3k2-MSM.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5855,7 +5921,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 180,
+      "rank": 182,
       "model": "yolo11-C3k2-Parc.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5887,7 +5953,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 181,
+      "rank": 183,
       "model": "yolo11-C3k2-RandomMixing-CGLU.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5919,7 +5985,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 182,
+      "rank": 184,
       "model": "yolo11-C3k2-RandomMixing.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -5951,7 +6017,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 183,
+      "rank": 185,
       "model": "yolo11-C3k2-RetBlock.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -5983,7 +6049,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 184,
+      "rank": 186,
       "model": "yolo11-C3k2-RFCAConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -6015,7 +6081,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 185,
+      "rank": 187,
       "model": "yolo11-C3k2-SAVSS.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6047,7 +6113,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 186,
+      "rank": 188,
       "model": "yolo11-C3k2-SFHF.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6079,7 +6145,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 187,
+      "rank": 189,
       "model": "yolo11-C3k2-SMAFB-CGLU.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6111,7 +6177,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 188,
+      "rank": 190,
       "model": "yolo11-C3k2-SMAFB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6143,7 +6209,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 189,
+      "rank": 191,
       "model": "yolo11-C3k2-SMPCGLU.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6175,7 +6241,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 190,
+      "rank": 192,
       "model": "yolo11-C3k2-VSS.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6207,7 +6273,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 191,
+      "rank": 193,
       "model": "yolo11-CSMHSA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -6239,7 +6305,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 192,
+      "rank": 194,
       "model": "yolo11-CSP-FreqSpatial.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6271,7 +6337,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 193,
+      "rank": 195,
       "model": "yolo11-CSwinTransformer.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -6303,7 +6369,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 194,
+      "rank": 196,
       "model": "yolo11-CTrans.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6335,7 +6401,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 195,
+      "rank": 197,
       "model": "yolo11-DTAB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6367,7 +6433,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 196,
+      "rank": 198,
       "model": "yolo11-dyhead-DCNV3.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6399,7 +6465,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 197,
+      "rank": 199,
       "model": "yolo11-dyhead-DCNV4.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6431,7 +6497,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 198,
+      "rank": 200,
       "model": "yolo11-EfficientFormerV2.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -6463,7 +6529,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 199,
+      "rank": 201,
       "model": "yolo11-ETB.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6495,7 +6561,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 200,
+      "rank": 202,
       "model": "yolo11-FDT.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6527,7 +6593,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 201,
+      "rank": 203,
       "model": "yolo11-fsa.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6559,7 +6625,7 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证"
     },
     {
-      "rank": 202,
+      "rank": 204,
       "model": "yolo11-GDSAFusion.yaml",
       "status": "failed",
       "best_epoch": "",
@@ -6591,35 +6657,35 @@
       "data_status": "耗时已从结果/日志补算；缺最终mAP：运行失败未完成验证；缺参数/GFLOPs：构建或运行阶段失败"
     },
     {
-      "rank": 203,
-      "model": "yolo11-GFPN.yaml",
+      "rank": 205,
+      "model": "yolo11-GlobalEdgeInformationTransfer1.yaml",
       "status": "training",
       "best_epoch": "1",
       "precision": "",
       "recall": "",
-      "map50": "",
-      "map5095": "",
+      "map50": "0.00807",
+      "map5095": "0.00223",
       "parameters": "",
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": 55.7,
-      "avg_epoch_seconds": 55.7,
-      "estimated_total_seconds": 278.4,
-      "delta_map5095": "",
+      "runtime_seconds": 85.7,
+      "avg_epoch_seconds": 85.7,
+      "estimated_total_seconds": 428.3,
+      "delta_map5095": "-0.2654",
       "delta_parameters_m": "",
-      "delta_screen_map5095": "",
+      "delta_screen_map5095": "-0.2654",
       "module_usefulness": "进行中 · 待完成5轮",
       "verdict": "当前训练中",
       "convergence": "未判断",
       "convergence_detail": "当前模型尚未完成5轮，暂不判断收敛",
-      "log_evidence": "实时日志 · epoch 1 / 5 轮 · 2.10 it/s",
+      "log_evidence": "实时日志 · epoch 1 / 5 轮 · 2.02 it/s",
       "data_status": "实时训练中：最终指标待完成5轮验证",
       "error": "",
       "image_url": "",
-      "module": "gfpn",
-      "position": "Neck / 特征融合",
-      "effect": "改变多尺度特征融合路径，增强不同尺度目标信息交互"
+      "module": "globaledgeinformationtransfer1",
+      "position": "Backbone / Neck（需按 YAML 逐层核对）",
+      "effect": "修改网络结构或算子，具体作用需结合 YAML 与源码核对"
     }
   ],
   "curves": [
