@@ -187,7 +187,9 @@
     const statusLabel = {reference:'基准',reference_screen:'基准',trained:'已训练',build_ok:'可构建',training:'训练中',interrupted:'中途停止',skipped_oom:'OOM跳过',skipped_timeout:'超时跳过',skipped_crash:'崩溃跳过',failed:'结构失败'};
     const statusClass = (status) => ({trained:'trained',skipped_timeout:'timeout',failed:'failed',skipped_crash:'crash',interrupted:'interrupted',training:'training',build_ok:'build'}[status] || '');
     const statusViewLabel = {all:'超过基准的模块',trained:'已训练模型',skipped_timeout:'超时模型',failed:'结构失败模型'};
-    let currentMode = 'screen';
+    const requestedMode = new URLSearchParams(window.location.search).get('mode');
+    let currentMode = ['screen','retry-timeout','full-useful'].includes(requestedMode) ? requestedMode : 'screen';
+    document.querySelector('#runMode').value = currentMode;
     const savedTheme = localStorage.getItem('maize-theme'); if(savedTheme === 'dark') document.body.classList.add('dark');
     document.querySelector('#themeToggle').addEventListener('click', () => { const dark = document.body.classList.toggle('dark'); localStorage.setItem('maize-theme', dark ? 'dark' : 'light'); });
     document.querySelector('#runMode').addEventListener('change', (event) => { currentMode = event.target.value; document.querySelector('#detailPanel').hidden = true; refresh(); });
