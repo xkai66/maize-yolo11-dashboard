@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-08-30T02:20:59+08:00",
+  "updated_at": "2026-08-30T02:26:16+08:00",
   "mode": "retry-timeout",
   "mode_label": "超时复跑（180秒/轮）",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_retry-timeout_20260830_020441.csv",
   "total": 169,
-  "recorded": 47,
-  "trained": 27,
+  "recorded": 48,
+  "trained": 28,
   "interrupted": 2,
   "failed": 0,
   "skipped_oom": 0,
   "skipped_timeout": 18,
   "skipped_crash": 0,
   "build_ok": 0,
-  "pending": 122,
+  "pending": 121,
   "baseline": {
     "rank": "基准",
     "model": "基准",
@@ -86,17 +86,16 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 48,
+    "index": 49,
     "total": 169,
-    "model": "yolo11-C3k2-MambaOut.yaml",
+    "model": "yolo11-C3k2-MLCA.yaml",
     "total_epochs": 5,
-    "epoch": 2,
-    "batch": 138,
+    "epoch": 5,
+    "batch": 157,
     "batch_total": 157,
-    "speed_it_s": 6.26,
-    "eta_seconds": 78.3,
-    "eta_text": "约 1分18秒",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_048_yolo11-C3k2-DCNV2",
+    "speed_it_s": 6.72,
+    "eta_seconds": 0.0,
+    "eta_text": "约 0秒",
     "active": true,
     "state": "训练中",
     "log": "batch_retry-timeout_20260830_020441.log"
@@ -672,6 +671,38 @@
     },
     {
       "rank": 18,
+      "model": "yolo11-C3k2-MambaOut.yaml",
+      "status": "trained",
+      "best_epoch": "5",
+      "precision": "0.45354",
+      "recall": "0.56252",
+      "map50": "0.5016",
+      "map5095": "0.19806",
+      "parameters": "2561160",
+      "parameters_m": "2.56116",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "-0.0696",
+      "delta_parameters_m": "-0.029",
+      "delta_screen_map5095": "-0.0696",
+      "module_usefulness": "初筛未超过",
+      "verdict": "更轻但精度未超过",
+      "convergence": "样本不足",
+      "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
+      "log_evidence": "日志 status=trained · 完成 5/5 轮",
+      "error": "",
+      "image_url": "assets/retry-timeout_results_19.png",
+      "module": "c3k2-mambaout",
+      "position": "Backbone / Neck（需按 YAML 逐层核对）",
+      "effect": "引入注意力或特征块，增强显著区域与特征表达",
+      "runtime_seconds": 178.0,
+      "avg_epoch_seconds": 35.6,
+      "estimated_total_seconds": 178.0,
+      "delta_runtime_seconds": "+47.6",
+      "data_status": "数据完整"
+    },
+    {
+      "rank": 19,
       "model": "yolo11-C3k2-MambaOut-UniRepLK.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -692,7 +723,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_19.png",
+      "image_url": "assets/retry-timeout_results_20.png",
       "module": "c3k2-mambaout-unireplk",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -703,7 +734,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 19,
+      "rank": 20,
       "model": "yolo11-C3k2-EfficientVIM.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -724,7 +755,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_20.png",
+      "image_url": "assets/retry-timeout_results_21.png",
       "module": "c3k2-efficientvim",
       "position": "Backbone / 骨干网络",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -735,7 +766,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 20,
+      "rank": 21,
       "model": "yolo11-C3k2-GhostDynamicConv.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -756,7 +787,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_21.png",
+      "image_url": "assets/retry-timeout_results_22.png",
       "module": "c3k2-ghostdynamicconv",
       "position": "Backbone / 骨干网络",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -767,7 +798,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 21,
+      "rank": 22,
       "model": "yolo11-C3k2-FMB.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -788,7 +819,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_22.png",
+      "image_url": "assets/retry-timeout_results_23.png",
       "module": "c3k2-fmb",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -799,7 +830,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 22,
+      "rank": 23,
       "model": "yolo11-C3k2-AdditiveBlock.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -820,7 +851,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_23.png",
+      "image_url": "assets/retry-timeout_results_24.png",
       "module": "c3k2-additiveblock",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -831,7 +862,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 23,
+      "rank": 24,
       "model": "yolo11-C3k2-IdentityFormer-CGLU.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -852,7 +883,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_24.png",
+      "image_url": "assets/retry-timeout_results_25.png",
       "module": "c3k2-identityformer-cglu",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -863,7 +894,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 24,
+      "rank": 25,
       "model": "yolo11-C3k2-Faster.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -884,7 +915,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_25.png",
+      "image_url": "assets/retry-timeout_results_26.png",
       "module": "c3k2-faster",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -895,7 +926,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 25,
+      "rank": 26,
       "model": "yolo11-C3k2-gConv.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -916,7 +947,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_26.png",
+      "image_url": "assets/retry-timeout_results_27.png",
       "module": "c3k2-gconv",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -927,7 +958,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 26,
+      "rank": 27,
       "model": "yolo11-C3k2-AdditiveBlock-CGLU.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -948,7 +979,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_27.png",
+      "image_url": "assets/retry-timeout_results_28.png",
       "module": "c3k2-additiveblock-cglu",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -959,7 +990,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 27,
+      "rank": 28,
       "model": "yolo11-C3k2-DIMB.yaml",
       "status": "trained",
       "best_epoch": "5",
@@ -980,7 +1011,7 @@
       "convergence_detail": "仅有 5 个 epoch，至少需要 10 个 epoch 判断趋势",
       "log_evidence": "日志 status=trained · 完成 5/5 轮",
       "error": "",
-      "image_url": "assets/retry-timeout_results_28.png",
+      "image_url": "assets/retry-timeout_results_29.png",
       "module": "c3k2-dimb",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达",
@@ -991,7 +1022,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 28,
+      "rank": 29,
       "model": "yolo11-C3k2-KAN.yaml",
       "status": "interrupted",
       "best_epoch": "3",
@@ -1023,7 +1054,7 @@
       "data_status": "训练未正常收尾：不计入已训练；mAP为中途记录：不作为最终指标"
     },
     {
-      "rank": 29,
+      "rank": 30,
       "model": "yolo11-C3k2-EIEM.yaml",
       "status": "interrupted",
       "best_epoch": "3",
@@ -1055,7 +1086,7 @@
       "data_status": "训练未正常收尾：不计入已训练；mAP为中途记录：不作为最终指标"
     },
     {
-      "rank": 30,
+      "rank": 31,
       "model": "yolo11-C3k2-HDRAB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1087,7 +1118,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 31,
+      "rank": 32,
       "model": "yolo11-C3k2-Faster-EMA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1119,7 +1150,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 32,
+      "rank": 33,
       "model": "yolo11-C3k2-DeepDBB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1151,7 +1182,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 33,
+      "rank": 34,
       "model": "yolo11-bifpn-GLSA.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1183,7 +1214,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 34,
+      "rank": 35,
       "model": "yolo11-C3k2-fadc.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1215,7 +1246,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 35,
+      "rank": 36,
       "model": "yolo11-C3k2-IdentityFormer.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1247,7 +1278,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 36,
+      "rank": 37,
       "model": "yolo11-C3k2-iRMB-SWC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1279,7 +1310,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 37,
+      "rank": 38,
       "model": "yolo11-C3k2-EMBC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1311,7 +1342,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 38,
+      "rank": 39,
       "model": "yolo11-C3k2-EMSCP.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1343,7 +1374,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 39,
+      "rank": 40,
       "model": "yolo11-C3k2-AKConv.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1375,7 +1406,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 40,
+      "rank": 41,
       "model": "yolo11-C3k2-iRMB-Cascaded.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1407,7 +1438,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 41,
+      "rank": 42,
       "model": "yolo11-C3k2-Faster-CGLU.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1439,7 +1470,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 42,
+      "rank": 43,
       "model": "yolo11-aux.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1471,7 +1502,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 43,
+      "rank": 44,
       "model": "yolo11-C3k2-iRMB-DRB.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1503,7 +1534,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 44,
+      "rank": 45,
       "model": "yolo11-bifpn-SDI.yaml",
       "status": "skipped_timeout",
       "best_epoch": "1",
@@ -1535,7 +1566,7 @@
       "data_status": "mAP为中途值：未完成5轮，不是最终指标"
     },
     {
-      "rank": 45,
+      "rank": 46,
       "model": "yolo11-AggregatedAttention.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1567,7 +1598,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 46,
+      "rank": 47,
       "model": "yolo11-ASF-P2.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1599,7 +1630,7 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 47,
+      "rank": 48,
       "model": "yolo11-C3k2-EMSC.yaml",
       "status": "skipped_timeout",
       "best_epoch": "",
@@ -1631,10 +1662,10 @@
       "data_status": "缺最终mAP：超时未完成5轮验证"
     },
     {
-      "rank": 48,
-      "model": "yolo11-C3k2-MambaOut.yaml",
+      "rank": 49,
+      "model": "yolo11-C3k2-MLCA.yaml",
       "status": "training",
-      "best_epoch": "2",
+      "best_epoch": "5",
       "precision": "",
       "recall": "",
       "map50": "",
@@ -1643,9 +1674,9 @@
       "parameters_m": "",
       "layers": "",
       "gflops": "",
-      "runtime_seconds": 132381.1,
-      "avg_epoch_seconds": 66190.5,
-      "estimated_total_seconds": 330952.7,
+      "runtime_seconds": "",
+      "avg_epoch_seconds": "",
+      "estimated_total_seconds": "",
       "delta_map5095": "",
       "delta_parameters_m": "",
       "delta_screen_map5095": "",
@@ -1653,11 +1684,11 @@
       "verdict": "当前训练中",
       "convergence": "未判断",
       "convergence_detail": "当前模型尚未完成5轮，暂不判断收敛",
-      "log_evidence": "实时日志 · epoch 2 / 5 轮 · 6.26 it/s",
+      "log_evidence": "实时日志 · epoch 5 / 5 轮 · 6.72 it/s",
       "data_status": "实时训练中：最终指标待完成5轮验证",
       "error": "",
       "image_url": "",
-      "module": "c3k2-mambaout",
+      "module": "c3k2-mlca",
       "position": "Backbone / Neck（需按 YAML 逐层核对）",
       "effect": "引入注意力或特征块，增强显著区域与特征表达"
     }
