@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-30T11:49:01+08:00",
+  "updated_at": "2026-08-30T11:54:30+08:00",
   "mode": "retry-timeout",
   "mode_label": "超时复跑（180秒/轮）",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_retry-timeout_20260830_020441.csv",
@@ -90,18 +90,16 @@
     "total": 169,
     "model": "yolo11-rmt.yaml",
     "total_epochs": 5,
-    "epoch": "1",
-    "batch": 157,
-    "batch_total": 157,
-    "speed_it_s": null,
-    "eta_seconds": null,
-    "eta_text": "—",
     "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_166_yolo11-CSP-PMSFA",
+    "epoch": "1",
     "live_map5095": "0.00263",
     "live_map50": "0.01136",
+    "eta_text": "—",
     "active": false,
     "state": "已停止",
-    "log": "batch_retry-timeout_20260830_020441.log"
+    "speed_it_s": null,
+    "eta_seconds": null,
+    "log": "batch_retry-timeout_20260830_115036.log"
   },
   "ranking": [
     {
