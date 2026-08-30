@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-30T14:00:17+08:00",
+  "updated_at": "2026-08-30T14:02:58+08:00",
   "mode": "retry-timeout",
   "mode_label": "超时复跑（180秒/轮）",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_retry-timeout_20260830_120004.csv",
-  "total": 169,
+  "total": 1,
   "recorded": 169,
   "trained": 133,
   "interrupted": 2,
