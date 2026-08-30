@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-30T11:54:30+08:00",
+  "updated_at": "2026-08-30T11:59:57+08:00",
   "mode": "retry-timeout",
   "mode_label": "超时复跑（180秒/轮）",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_retry-timeout_20260830_020441.csv",
@@ -99,7 +99,7 @@
     "state": "已停止",
     "speed_it_s": null,
     "eta_seconds": null,
-    "log": "batch_retry-timeout_20260830_115036.log"
+    "log": "batch_retry-timeout_20260830_115649.log"
   },
   "ranking": [
     {
