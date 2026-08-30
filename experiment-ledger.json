@@ -1,12 +1,14 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-08-30T21:02:27+08:00",
+  "updated_at": "2026-08-31T05:24:00+08:00",
   "data_scope": {
     "historical_screen_models": 290,
     "historical_screen_complete_before_retry": 64,
     "retry_complete_records": 135,
     "current_screen_models": 6,
-    "full_useful_complete": 3
+    "full_useful_complete": 3,
+    "full_useful_pending": 3,
+    "family_baseline_pending": 1
   },
   "current_batch": [
     {"id":"E0","name":"yolo11.yaml","alias":"基准 yolo11n","a":"原始 C3k2","b":"原始 PAN","c":"原始 Detect","position":"Backbone + Neck + Head"},
@@ -24,6 +26,7 @@
     {"at":"2026-08-30T18:01:00+08:00","kind":"design","title":"确定六模型缝合初筛批次","detail":"基准 E0 + S1–S5；S1/S2 改 Backbone+AFPN，S3 改 HSFPN+TADDH，S4 改 ELA+AFPN，S5 改 AFPN+TADDH。"},
     {"at":"2026-08-30T19:27:16+08:00","kind":"screen","title":"当前批次启动五轮初筛","detail":"supervisor_six_full_20260830_192716.log 已启动 E0 + S1–S5，按顺序训练，完成后才进入下一阶段。"},
     {"at":"2026-08-30T20:01:55+08:00","kind":"live","title":"当前批次初筛完成","detail":"本机 screen 汇总已完成 E0 + S1–S5 六模型初筛；完整性与中途停止状态分开记录。"},
-    {"at":"2026-08-30T21:02:27+08:00","kind":"calibration","title":"校准 monitor 与公开网页数据","detail":"full-useful 按 config_20260830_201618.json 固定为4个模型；本机接口已修复为 S2 epoch 61/100、batch 80/157、active=true、pending=1，且不再读取 screen run_dir 或旧 epoch。"}
+    {"at":"2026-08-30T21:02:27+08:00","kind":"calibration","title":"校准 monitor 与公开网页数据","detail":"full-useful 按 config_20260830_201618.json 固定为4个模型；本机接口已修复为 S2 epoch 61/100、batch 80/157、active=true、pending=1，且不再读取 screen run_dir 或旧 epoch。"},
+    {"at":"2026-08-31T05:24:00+08:00","kind":"queue","title":"修复恢复入口并加入对照队列","detail":"发现 BAT 中文路径编码和 full-useful 二次筛选会阻断恢复；已改为英文 ASCII BAT、暂停快照 pending 队列直恢复，并追加 S1、S4、YOLO12n 的 100 轮纯 YAML 对照。S2/S3/S5 不重复训练。"}
   ]
 }
