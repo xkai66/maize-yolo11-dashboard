@@ -34,6 +34,16 @@
     .current-model { position:relative; z-index:1; padding:11px 12px; border:1px solid rgba(150,115,49,.38); border-radius:10px; color:var(--ink); background:rgba(246,248,242,.86); font:700 17px/1.35 ui-monospace,monospace; overflow-wrap:anywhere; }
     .current-meta { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; color:var(--muted); font:600 11px ui-monospace,monospace; }
     .current-meta span { padding:6px 8px; border:1px solid rgba(94,109,99,.28); border-radius:7px; background:rgba(246,248,242,.72); }
+    .run-context { display:flex; align-items:center; gap:14px; margin:14px 0; padding:14px 16px; border:1px solid var(--line); border-left:5px solid var(--leaf); border-radius:14px; background:rgba(246,248,242,.82); box-shadow:0 8px 22px rgba(38,54,44,.07); }
+    .run-context-icon { display:grid; place-items:center; width:34px; height:34px; flex:0 0 34px; border-radius:10px; color:#fff; background:var(--leaf); font:800 16px Georgia,serif; }
+    .run-context-copy { min-width:0; flex:1; }
+    .run-context-copy strong { display:block; font:800 15px Georgia,serif; }
+    .run-context-copy p { margin:4px 0 0; color:var(--muted); font-size:12px; line-height:1.55; }
+    .run-context-chip { flex:0 0 auto; padding:7px 10px; border:1px solid var(--line); border-radius:999px; color:var(--leaf); background:var(--panel); font:800 11px ui-monospace,monospace; white-space:nowrap; }
+    .run-context.waiting { border-left-color:var(--maize); }
+    .run-context.waiting .run-context-icon { color:var(--ink); background:var(--maize); }
+    .run-context.history { border-left-color:#718092; }
+    .run-context.history .run-context-icon { background:#718092; }
     .main { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:14px; margin-top:14px; }
     .section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:16px; }
     .table-tools { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
@@ -131,6 +141,9 @@
     body.dark .current-model { color:#f7fbf7; background:#2a382f; border-color:#718576; }
     body.dark .current-meta { color:#d5e0d7; }
     body.dark .current-meta span { color:#e6efe8; background:#26352b; border-color:#536a5a; }
+    body.dark .run-context { background:#1b2820; border-color:#4b5e51; }
+    body.dark .run-context-copy p { color:#c4d0c7; }
+    body.dark .run-context-chip { color:#d7f4dc; background:#24362a; border-color:#5a7560; }
     body.dark .bar { background:#2d4033; }
     body.dark .bar > i { background:linear-gradient(110deg,#d8ad51 0%,#e4bd68 42%,rgba(255,255,255,.72) 50%,#e4bd68 58%,#d8ad51 100%); }
     body.dark th { color:#dce8df; background:rgba(228,189,104,.16); border-color:#53675a; }
@@ -157,12 +170,13 @@
 <body>
   <main class="wrap">
     <header>
-      <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准，追踪当前模型、验证轮次与 mAP50-95 差异。页面只读，不会干扰 GPU 训练。</p></div>
+      <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准。页面把当前批次、历史汇总和下一阶段分开显示，避免把旧结果当成正在训练的结果。</p></div>
       <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="screen">5轮初筛</option><option value="retry-timeout">超时复跑</option><option value="full-useful">100轮正式</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>
-    </header>
+  </header>
+    <section class="run-context" id="runContext" aria-live="polite"><div class="run-context-icon" id="runContextIcon">↗</div><div class="run-context-copy"><strong id="runContextTitle">正在读取任务状态</strong><p id="runContextText">正在区分当前批次与历史汇总…</p></div><span class="run-context-chip" id="runContextChip">连接中</span></section>
     <section class="grid">
-      <article class="card"><div class="metric-label">已记录模型</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
-      <article class="card"><div class="metric-label">已训练完成</div><div class="metric" id="trained">—</div></article>
+      <article class="card"><div class="metric-label">本视图汇总</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
+      <article class="card"><div class="metric-label">汇总内已训练</div><div class="metric" id="trained">—</div></article>
       <article class="card"><div class="metric-label">当前最佳 mAP50-95</div><div class="metric" id="best">—</div></article>
       <article class="card"><div class="metric-label">失败 / OOM / 超时 / 中断</div><div class="metric" id="failed">—</div></article>
     </section>
@@ -171,12 +185,12 @@
       <div class="current"><div class="current-kicker"><i class="current-led"></i><span>实时训练状态</span></div><h2 id="currentTitle">正在训练</h2><div class="current-model" id="currentModel">等待训练日志…</div><div class="current-meta"><span id="currentEpoch">epoch —</span><span id="currentSpeed">速度 —</span><span id="currentEta">预计剩余 —</span><span id="currentMap">mAP50-95 —</span></div></div>
     </section>
     <section class="main">
-      <article class="card"><div class="section-head"><h2 id="tableTitle">超过基准的模块</h2><span class="small">当前视图：<b id="modeLabel">5轮初筛</b> · 可切换显示未超过模块 · 完整模型名在说明里</span></div><div class="table-tools"><div class="status-filters" role="group" aria-label="按训练状态筛选"><span class="filter-label">状态筛选</span><button class="filter-btn active" data-status-filter="all" type="button">全部 <span class="filter-count" id="filter-all-count">—</span></button><button class="filter-btn trained" data-status-filter="trained" type="button"><i class="filter-dot"></i>已训练 <span class="filter-count" id="filter-trained-count">—</span></button><button class="filter-btn timeout" data-status-filter="skipped_timeout" type="button"><i class="filter-dot"></i>超时 <span class="filter-count" id="filter-timeout-count">—</span></button><button class="filter-btn failed" data-status-filter="failed" type="button"><i class="filter-dot"></i>结构失败 <span class="filter-count" id="filter-failed-count">—</span></button></div><span class="small" id="filterHint">默认显示超过基准的结果</span></div><div style="overflow:auto"><table><thead><tr><th>#</th><th>模块名</th><th>状态</th><th><button class="sortable" data-key="parameters_m">参数量 ↕</button></th><th><button class="sortable" data-key="layers">层数 ↕</button></th><th><button class="sortable" data-key="gflops">GFLOPs ↕</button></th><th>训练用时</th><th>平均/轮</th><th>预计总时长</th><th><button class="sortable" data-key="best_epoch">epoch ↕</button></th><th><button class="sortable" data-key="map50">mAP50 ↕</button></th><th><button class="sortable" data-key="map5095">mAP50-95 ↕</button></th><th><button class="sortable" data-key="delta_parameters_m">Δ参数M ↕</button></th><th><button class="sortable" data-key="delta_map5095">Δ最终mAP ↕</button></th><th><button class="sortable" data-key="delta_screen_map5095">Δ前5轮mAP ↕</button></th><th>前5轮模块有效性</th><th>收敛状态</th><th>判断</th><th>日志证据</th><th>数据状态</th><th>说明</th></tr></thead><tbody id="ranking"><tr><td colspan="21" class="small">正在读取…</td></tr></tbody></table></div><div class="pager"><button id="prevPage" type="button">上一页</button><span id="pageInfo" class="page-info">—</span><button id="nextPage" type="button">下一页</button></div><div id="detailPanel" class="detail-panel" hidden></div></article>
-      <aside class="card side"><div class="section-head"><h2>实验说明</h2></div><p>5轮初筛只判断模块是否超过同预算的 yolo11n 5轮基准；100轮最终训练再判断是否真正优于 yolo11n。模块位置和作用为自动注释，论文中引用前需按 YAML 逐层核对。</p><div class="policy-note"><strong>超时规则</strong>当前初筛和超时复跑统一采用：运行约 <b>180秒</b> 后检查速度；若平均每轮超过 <b>180秒（3分钟）</b>，才标记为“超时跳过”。此前按旧75秒规则产生的超时记录会进入复跑重新验证。“训练用时”是实际运行到停止的时间，“预计总时长”按当前速度估算。超时只代表运行速度限制，不等于精度差，也不计入已训练。</div><div class="legend"><div><span>基准最终 mAP50-95</span><b id="baselineMap">—</b></div><div><span>基准前5轮 mAP50-95</span><b id="baselineScreenMap">—</b></div><div><span>构建成功</span><b id="buildOk">—</b></div><div><span>训练完成</span><b id="trainedSide">—</b></div><div><span>OOM 跳过</span><b id="oomSide">—</b></div><div><span>待处理</span><b id="pending">—</b></div><div><span>更新时间</span><b id="updated">—</b></div></div></aside>
+      <article class="card"><div class="section-head"><h2 id="tableTitle">超过基准的模块</h2><span class="small">当前视图：<b id="modeLabel">5轮初筛</b> · 表格显示最近一次该阶段汇总</span></div><div class="table-tools"><div class="status-filters" role="group" aria-label="按训练状态筛选"><span class="filter-label">状态筛选</span><button class="filter-btn active" data-status-filter="all" type="button">全部 <span class="filter-count" id="filter-all-count">—</span></button><button class="filter-btn trained" data-status-filter="trained" type="button"><i class="filter-dot"></i>已训练 <span class="filter-count" id="filter-trained-count">—</span></button><button class="filter-btn timeout" data-status-filter="skipped_timeout" type="button"><i class="filter-dot"></i>超时 <span class="filter-count" id="filter-timeout-count">—</span></button><button class="filter-btn failed" data-status-filter="failed" type="button"><i class="filter-dot"></i>结构失败 <span class="filter-count" id="filter-failed-count">—</span></button></div><span class="small" id="filterHint">默认显示超过基准的结果</span></div><div style="overflow:auto"><table><thead><tr><th>#</th><th>模块名</th><th>状态</th><th><button class="sortable" data-key="parameters_m">参数量 ↕</button></th><th><button class="sortable" data-key="layers">层数 ↕</button></th><th><button class="sortable" data-key="gflops">GFLOPs ↕</button></th><th>训练用时</th><th>平均/轮</th><th>预计总时长</th><th><button class="sortable" data-key="best_epoch">epoch ↕</button></th><th><button class="sortable" data-key="map50">mAP50 ↕</button></th><th><button class="sortable" data-key="map5095">mAP50-95 ↕</button></th><th><button class="sortable" data-key="delta_parameters_m">Δ参数M ↕</button></th><th><button class="sortable" data-key="delta_map5095">Δ最终mAP ↕</button></th><th><button class="sortable" data-key="delta_screen_map5095">Δ前5轮mAP ↕</button></th><th>前5轮模块有效性</th><th>收敛状态</th><th>判断</th><th>日志证据</th><th>数据状态</th><th>说明</th></tr></thead><tbody id="ranking"><tr><td colspan="21" class="small">正在读取…</td></tr></tbody></table></div><div class="pager"><button id="prevPage" type="button">上一页</button><span id="pageInfo" class="page-info">—</span><button id="nextPage" type="button">下一页</button></div><div id="detailPanel" class="detail-panel" hidden></div></article>
+      <aside class="card side"><div class="section-head"><h2>实验说明</h2></div><p>先完成本批次 6 个模型的 5 轮初筛，再按同轮次 mAP50-95 是否超过 yolo11n 基准筛选“有用模型”，最后进入 100 轮正式训练。表格中的历史结果不会代替当前批次。</p><div class="policy-note"><strong>当前执行规则</strong>5轮初筛：首轮允许启动预热，平均每轮超过 <b>600秒</b> 才标记为“超时跳过”；超时只代表速度限制，不等于精度差，也不计入已训练。100轮正式训练：<b>不启用超时判定，必须跑满100轮</b>。训练用时是实际运行时间，预计总时长按当前速度估算。</div><div class="legend"><div><span>基准最终 mAP50-95</span><b id="baselineMap">—</b></div><div><span>基准前5轮 mAP50-95</span><b id="baselineScreenMap">—</b></div><div><span>构建成功</span><b id="buildOk">—</b></div><div><span>训练完成</span><b id="trainedSide">—</b></div><div><span>OOM 跳过</span><b id="oomSide">—</b></div><div><span>待处理</span><b id="pending">—</b></div><div><span>更新时间</span><b id="updated">—</b></div></div></aside>
     </section>
      <section class="card chart-card"><div class="section-head"><h2>验证精度随 epoch 变化</h2><div><select id="curveMetric" class="metric-select" aria-label="选择折线指标"><option value="map5095">mAP50-95</option><option value="map50">mAP50</option><option value="precision">Precision</option><option value="recall">Recall</option></select><span class="small">基准固定为金色 · 只显示超过同轮次基准的模型</span></div></div><svg id="curveChart" class="chart" viewBox="0 0 960 340" role="img" aria-label="验证指标随 epoch 变化折线图"></svg><div id="curveLegend" class="curve-legend"></div></section>
     <section class="card chart-card"><div class="section-head"><h2>训练结果图</h2><span class="small">各模型 results.png · 点击图片可放大</span></div><div id="gallery" class="gallery"><p class="small">训练完成后显示结果图。</p></div></section>
-    <footer>数据源：C:\Users\xkai2\Desktop\训练集\yolov11\logs\batch_experiments · 自动刷新：5 秒</footer>
+    <footer>数据源：C:\Users\xkai2\Desktop\训练集\yolov11\logs\batch_experiments · 本地接口约3秒刷新 · GitHub状态约30秒同步</footer>
   </main>
   <script>
     const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -193,17 +207,43 @@
     const savedTheme = localStorage.getItem('maize-theme'); if(savedTheme === 'dark') document.body.classList.add('dark');
     document.querySelector('#themeToggle').addEventListener('click', () => { const dark = document.body.classList.toggle('dark'); localStorage.setItem('maize-theme', dark ? 'dark' : 'light'); });
     document.querySelector('#runMode').addEventListener('change', (event) => { currentMode = event.target.value; document.querySelector('#detailPanel').hidden = true; refresh(); });
+    async function fetchStatus(mode){
+      let staticSnapshot = false; let data;
+      try { const res = await fetch('/api/status?mode=' + encodeURIComponent(mode) + '&t=' + Date.now(), {cache:'no-store'}); if(!res.ok) throw Error('offline'); data = await res.json(); }
+      catch(apiError) { const backup = await fetch('status-' + encodeURIComponent(mode) + '.json?t=' + Date.now(), {cache:'no-store'}); if(!backup.ok) throw apiError; data = await backup.json(); staticSnapshot = true; }
+      return {data, staticSnapshot};
+    }
+    function setRunContext(d, screenStatus){
+      const box=document.querySelector('#runContext'), title=document.querySelector('#runContextTitle'), text=document.querySelector('#runContextText'), chip=document.querySelector('#runContextChip'), icon=document.querySelector('#runContextIcon');
+      const c=d.current||{}, active=c.active===true, screen=screenStatus?.current||{};
+      box.classList.remove('waiting','history');
+      if(currentMode==='full-useful' && !active && screen.active===true){
+        box.classList.add('waiting'); icon.textContent='Ⅱ'; title.textContent='100轮正式：等待5轮初筛完成'; text.textContent=`当前初筛正在处理 ${screen.model||'目标模型'}（epoch ${screen.epoch??'—'} / ${screen.total_epochs||5}）。6个模型全部完成后才会筛选并启动正式训练；下方100轮表格是上一批历史结果。`; chip.textContent=`等待 6/6`;
+      } else if(currentMode==='full-useful' && active){
+        title.textContent='100轮正式：当前正在训练'; text.textContent=`当前模型 ${c.model||'—'}，正式训练不设超时，必须跑满 ${c.total_epochs||100} 轮。`; chip.textContent=`模型 ${c.index||'—'}/${c.total||'—'}`;
+      } else if(active){
+        title.textContent='5轮初筛：当前正在训练'; text.textContent=`当前模型 ${c.model||'—'}，完成后写入本批次汇总；表格中的旧记录仅作历史对照。`; chip.textContent=`模型 ${c.index||'—'}/${c.total||'—'}`;
+      } else if(currentMode==='full-useful'){
+        box.classList.add('history'); icon.textContent='H'; title.textContent='100轮正式：当前没有运行任务'; text.textContent='下方显示最近一次完整正式训练汇总；新的正式训练将在5轮初筛达到6/6后自动启动。'; chip.textContent='历史汇总';
+      } else {
+        title.textContent='5轮初筛：等待或已停止'; text.textContent='表格显示最近一次初筛汇总；右侧若出现当前模型，才代表本机正在实时训练。'; chip.textContent='初筛视图';
+      }
+    }
     async function refresh(){
       try {
-        let d, staticSnapshot = false; try { const res = await fetch('/api/status?mode=' + encodeURIComponent(currentMode) + '&t=' + Date.now(), {cache:'no-store'}); if(!res.ok) throw Error('offline'); d = await res.json(); } catch(apiError) { const backup = await fetch('status-' + encodeURIComponent(currentMode) + '.json?t=' + Date.now(), {cache:'no-store'}); if(!backup.ok) throw apiError; d = await backup.json(); staticSnapshot = true; }
+        const mainStatus = await fetchStatus(currentMode); const d=mainStatus.data; const staticSnapshot=mainStatus.staticSnapshot; let screenStatus=null; if(currentMode==='full-useful'){ try{screenStatus=(await fetchStatus('screen')).data;}catch{} }
         document.querySelector('#connection').textContent = staticSnapshot ? 'Netlify快照' : '实时连接';
-        document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : currentMode === 'retry-timeout' ? '超时复跑（180秒/轮）' : '100轮正式';
+        document.querySelector('#modeLabel').textContent = currentMode === 'screen' ? '5轮初筛' : currentMode === 'retry-timeout' ? '超时复跑（600秒/轮）' : '100轮正式（无超时）';
+        setRunContext(d, screenStatus);
         document.querySelector('#recorded').innerHTML = `${d.recorded} <small>/ ${d.total}</small>`;
         document.querySelector('#trained').textContent = d.trained;
         const failedTotal = Number(d.failed || 0) + Number(d.skipped_oom || 0) + Number(d.skipped_timeout || 0) + Number(d.skipped_crash || 0) + Number(d.interrupted || 0); document.querySelector('#failed').textContent = failedTotal;
         const candidates = d.ranking.filter(x => !String(x.status).startsWith('reference') && x.map5095 !== ''); const best = candidates[0]; document.querySelector('#best').textContent = best ? pct(best.map5095) : '—';
-        const done = d.recorded, total = d.total || 1, progress = Math.min(100, done / total * 100); document.querySelector('#progressBar').style.width = progress + '%'; document.querySelector('#progressText').textContent = `${done} / ${d.total} · ${progress.toFixed(1)}%`;
-        const c = d.current || {}; const active = c.active === true; const phase = c.phase || '等待首批数据'; document.querySelector('#currentTitle').textContent = active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = c.epoch !== undefined ? `epoch ${c.epoch} / ${c.total_epochs || '—'}` : (active ? phase : 'epoch —'); document.querySelector('#currentSpeed').textContent = active && c.speed_it_s ? `速度 ${Number(c.speed_it_s).toFixed(2)} it/s` : (active ? phase : '速度 —'); document.querySelector('#currentEta').textContent = active && c.eta_text && c.eta_text !== '—' ? `预计剩余 ${c.eta_text}` : (active ? '预计剩余等待首批速度' : '预计剩余 —'); document.querySelector('#currentMap').textContent = c.live_map5095 ? `mAP50-95 ${pct(c.live_map5095)}` : (active ? 'mAP50-95 待验证' : 'mAP50-95 —');
+        const c = d.current || {}; const active = c.active === true; let done=d.recorded, total=d.total||1, progress=Math.min(100, done/total*100), progressLabel=`历史汇总 ${done}/${d.total}`;
+        if(currentMode==='full-useful' && !active && screenStatus?.current?.active===true){ done=Math.max(0,Number(screenStatus.current.index||1)-1); total=Number(screenStatus.current.total||6); progress=done/total*100; progressLabel=`等待初筛 ${done}/${total}`; }
+        else if(active && Number(c.total)<=10){ done=Math.max(0,Number(c.index||1)-1); total=Number(c.total); progress=done/total*100; progressLabel=`当前批次 ${done}/${total}`; }
+        document.querySelector('#progressBar').style.width = progress + '%'; document.querySelector('#progressText').textContent = `${progressLabel} · ${progress.toFixed(1)}%`;
+        const phase = c.phase || '等待首批数据'; const waitingFull=currentMode==='full-useful' && !active && screenStatus?.current?.active===true; const shown=waitingFull ? screenStatus.current : c; document.querySelector('#currentTitle').textContent = waitingFull ? '等待初筛完成' : active ? '正在训练' : (c.model ? '训练已停止' : '等待训练'); document.querySelector('#currentModel').textContent = waitingFull ? `初筛中：${shown.model||'—'}` : c.model ? (active ? c.model : `${c.model}（已停止）`) : '等待训练日志…'; document.querySelector('#currentEpoch').textContent = shown.epoch !== undefined ? `epoch ${shown.epoch} / ${shown.total_epochs || '—'}` : (active ? phase : 'epoch —'); document.querySelector('#currentSpeed').textContent = active && shown.speed_it_s ? `速度 ${Number(shown.speed_it_s).toFixed(2)} it/s` : (waitingFull ? '初筛进行中' : active ? phase : '速度 —'); document.querySelector('#currentEta').textContent = active && shown.eta_text && shown.eta_text !== '—' ? `预计剩余 ${shown.eta_text}` : (waitingFull ? '正式训练尚未开始' : active ? '预计剩余等待首批速度' : '预计剩余 —'); document.querySelector('#currentMap').textContent = shown.live_map5095 ? `mAP50-95 ${pct(shown.live_map5095)}` : (active || waitingFull ? 'mAP50-95 待验证' : 'mAP50-95 —');
         document.querySelector('#baselineMap').textContent = pct(d.baseline?.map5095); document.querySelector('#baselineScreenMap').textContent = pct(d.baseline?.screen_map5095); document.querySelector('#buildOk').textContent = d.build_ok; document.querySelector('#trainedSide').textContent = d.trained; document.querySelector('#oomSide').textContent = d.skipped_oom; document.querySelector('#pending').textContent = d.pending; document.querySelector('#updated').textContent = d.updated_at.split('T').pop();
         document.querySelector('#filter-all-count').textContent = d.recorded ?? '—'; document.querySelector('#filter-trained-count').textContent = d.trained ?? '—'; document.querySelector('#filter-timeout-count').textContent = d.skipped_timeout ?? '—'; document.querySelector('#filter-failed-count').textContent = d.failed ?? '—'; document.querySelector('#tableTitle').textContent = statusViewLabel[statusFilter] || '模型列表'; document.querySelector('#filterHint').textContent = statusFilter === 'all' ? (showUseless ? '当前显示全部已记录模型' : '默认显示超过基准的结果') : `当前只显示：${statusViewLabel[statusFilter]}`;
         const visibleRows = (d.ranking || []).filter(shouldShowRow); renderTable(visibleRows);
