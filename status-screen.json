@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-30T18:05:12+08:00",
+  "updated_at": "2026-08-30T18:05:49+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260830_135726.csv",
@@ -86,22 +86,14 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 6,
+    "index": 1,
     "total": 6,
-    "model": "yolo11.yaml",
+    "model": "yolo11-stitch-S1-MM-AFPN345.yaml",
     "total_epochs": 5,
-    "epoch": "5",
-    "batch": 157,
-    "batch_total": 157,
-    "speed_it_s": null,
-    "eta_seconds": null,
-    "eta_text": "—",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_006_yolo11",
-    "live_map5095": "0.22886",
-    "live_map50": "0.5737",
-    "active": false,
-    "state": "已停止",
-    "log": "batch_screen_20260830_135726.log"
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_screen_001_yolo11-stitch-S1-MM-AFPN3452",
+    "active": true,
+    "state": "训练中",
+    "log": "batch_screen_20260830_180512.log"
   },
   "ranking": [
     {
