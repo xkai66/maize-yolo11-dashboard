@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-08-30T20:10:00+08:00",
+  "updated_at": "2026-08-30T21:02:27+08:00",
   "data_scope": {
     "historical_screen_models": 290,
     "historical_screen_complete_before_retry": 64,
@@ -23,6 +23,7 @@
     {"at":"2026-08-30T15:18:07+08:00","kind":"full","title":"已有三项进入 100 轮正式训练","detail":"S5、S2、S3 均完成 100 轮，保留完整 CSV、权重和 results.png。"},
     {"at":"2026-08-30T18:01:00+08:00","kind":"design","title":"确定六模型缝合初筛批次","detail":"基准 E0 + S1–S5；S1/S2 改 Backbone+AFPN，S3 改 HSFPN+TADDH，S4 改 ELA+AFPN，S5 改 AFPN+TADDH。"},
     {"at":"2026-08-30T19:27:16+08:00","kind":"screen","title":"当前批次启动五轮初筛","detail":"supervisor_six_full_20260830_192716.log 已启动 E0 + S1–S5，按顺序训练，完成后才进入下一阶段。"},
-    {"at":"2026-08-30T20:01:55+08:00","kind":"live","title":"当前证据：S4 正在训练","detail":"本机 /api/status?mode=screen 显示 S4 epoch 1/5、batch 146/157；不是卡死，是顺序批量训练中的实时状态。"}
+    {"at":"2026-08-30T20:01:55+08:00","kind":"live","title":"当前批次初筛完成","detail":"本机 screen 汇总已完成 E0 + S1–S5 六模型初筛；完整性与中途停止状态分开记录。"},
+    {"at":"2026-08-30T21:02:27+08:00","kind":"calibration","title":"校准 monitor 与公开网页数据","detail":"full-useful 按 config_20260830_201618.json 固定为4个模型；本机接口已修复为 S2 epoch 61/100、batch 80/157、active=true、pending=1，且不再读取 screen run_dir 或旧 epoch。"}
   ]
 }
