@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-30T14:11:49+08:00",
+  "updated_at": "2026-08-30T14:13:07+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "",
@@ -103,7 +103,7 @@
       "module": "原始 YOLO11n",
       "position": "基准结构",
       "effect": "作为所有改动模型的固定参照",
-      "image_url": "assets/full-useful_results_1.png",
+      "image_url": "/api/result-image?run_dir=C:/Users/xkai2/Desktop/训练集/yolov11/runs/baseline_yolo11n_yaml7",
       "convergence": "已收敛",
       "convergence_detail": "最近10轮 mAP提升 +0.0081，P波动 0.0125，R波动 0.0092，验证损失变化 -0.0286",
       "verdict": "固定参考",
