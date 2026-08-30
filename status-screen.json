@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-30T18:00:55+08:00",
+  "updated_at": "2026-08-30T18:05:12+08:00",
   "mode": "screen",
   "mode_label": "5轮初筛",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_screen_20260830_135726.csv",
-  "total": 295,
+  "total": 296,
   "recorded": 6,
   "trained": 4,
   "interrupted": 0,
@@ -12,7 +12,7 @@
   "skipped_timeout": 2,
   "skipped_crash": 0,
   "build_ok": 0,
-  "pending": 289,
+  "pending": 290,
   "baseline": {
     "rank": "基准",
     "model": "基准",
