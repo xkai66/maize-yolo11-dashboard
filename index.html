@@ -34,6 +34,10 @@
     .current-model { position:relative; z-index:1; padding:11px 12px; border:1px solid rgba(150,115,49,.38); border-radius:10px; color:var(--ink); background:rgba(246,248,242,.86); font:700 17px/1.35 ui-monospace,monospace; overflow-wrap:anywhere; }
     .current-meta { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:7px; margin-top:12px; color:var(--muted); font:600 11px ui-monospace,monospace; }
     .current-meta span { padding:6px 8px; border:1px solid rgba(94,109,99,.28); border-radius:7px; background:rgba(246,248,242,.72); }
+    .site-nav { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:0 0 16px; }
+    .site-nav a { display:inline-flex; align-items:center; padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink); font:700 12px ui-monospace,monospace; text-decoration:none; }
+    .site-nav a:hover,.site-nav a[aria-current="page"] { border-color:var(--maize); color:var(--leaf); transform:translateY(-1px); }
+    .site-nav a[aria-current="page"] { background:#f0ead8; }
     .run-context { display:flex; align-items:center; gap:14px; margin:14px 0; padding:14px 16px; border:1px solid var(--line); border-left:5px solid var(--leaf); border-radius:14px; background:rgba(246,248,242,.82); box-shadow:0 8px 22px rgba(38,54,44,.07); }
     .run-context-icon { display:grid; place-items:center; width:34px; height:34px; flex:0 0 34px; border-radius:10px; color:#fff; background:var(--leaf); font:800 16px Georgia,serif; }
     .run-context-copy { min-width:0; flex:1; }
@@ -169,6 +173,7 @@
 </head>
 <body>
   <main class="wrap">
+    <nav class="site-nav" aria-label="实验页面导航"><a href="./" aria-current="page">监控看板</a><a href="./todo.html">实验 TODO</a><a href="https://xkai66.github.io/yolo11-stitch-planner/">缝合计划 ↗</a><a href="http://127.0.0.1:8765/">本机实时 ↗</a></nav>
     <header>
       <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准。页面把当前批次、历史汇总和下一阶段分开显示，避免把旧结果当成正在训练的结果。</p></div>
       <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="screen">5轮初筛</option><option value="retry-timeout">超时复跑</option><option value="full-useful">100轮正式</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>

@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "updated_at": "2026-08-30T20:10:00+08:00",
+  "data_scope": {
+    "historical_screen_models": 290,
+    "historical_screen_complete_before_retry": 64,
+    "retry_complete_records": 135,
+    "current_screen_models": 6,
+    "full_useful_complete": 3
+  },
+  "current_batch": [
+    {"id":"E0","name":"yolo11.yaml","alias":"基准 yolo11n","a":"原始 C3k2","b":"原始 PAN","c":"原始 Detect","position":"Backbone + Neck + Head"},
+    {"id":"S1","name":"yolo11-stitch-S1-MM-AFPN345.yaml","alias":"S1 · MobileMamba + AFPN345","a":"P4 C3k2_MobileMamba","b":"AFPN-P345","c":"Detect_AFPN_P345 内置头","position":"Backbone + Neck"},
+    {"id":"S2","name":"yolo11-stitch-S2-EV-AFPN345.yaml","alias":"S2 · EfficientVIM + AFPN345","a":"P4 C3k2_EfficientVIM","b":"AFPN-P345","c":"Detect_AFPN_P345 内置头","position":"Backbone + Neck"},
+    {"id":"S3","name":"yolo11-stitch-S3-ELA-TADDH.yaml","alias":"S3 · ELA-HSFPN + TADDH","a":"原始 C3k2","b":"ELA-HSFPN","c":"Detect_TADDH","position":"Neck + Head"},
+    {"id":"S4","name":"yolo11-stitch-S4-ELA-AFPN345.yaml","alias":"S4 · ELA + AFPN345","a":"P4 ELA_HSFPN","b":"AFPN-P345","c":"Detect_AFPN_P345 内置头","position":"Backbone/Neck"},
+    {"id":"S5","name":"yolo11-stitch-S5-AFPN345-TADDH.yaml","alias":"S5 · AFPN345 + TADDH","a":"P4 C3k2_EfficientVIM","b":"AFPN-P345","c":"Detect_TADDH","position":"Backbone + Neck + Head"}
+  ],
+  "timeline": [
+    {"at":"2026-08-28T02:19:10+08:00","kind":"experiment","title":"完成候选结构 dry-run","detail":"从模型 YAML 候选池建立批量实验入口，开始准备五轮初筛。"},
+    {"at":"2026-08-29T01:13:50+08:00","kind":"screen","title":"第一天 290 模型五轮初筛收尾","detail":"原始 summary_screen_20260829_004344.csv：290 个模型，64 个完整训练、169 个超时、51 个失败或未完整收尾。"},
+    {"at":"2026-08-30T12:14:44+08:00","kind":"retry","title":"超时模型复跑产生完整记录","detail":"summary_retry-timeout_20260830_120004.csv：169 条复跑记录，其中 135 条完成五轮；用于覆盖历史对应模型的空超时成绩。"},
+    {"at":"2026-08-30T15:18:07+08:00","kind":"full","title":"已有三项进入 100 轮正式训练","detail":"S5、S2、S3 均完成 100 轮，保留完整 CSV、权重和 results.png。"},
+    {"at":"2026-08-30T18:01:00+08:00","kind":"design","title":"确定六模型缝合初筛批次","detail":"基准 E0 + S1–S5；S1/S2 改 Backbone+AFPN，S3 改 HSFPN+TADDH，S4 改 ELA+AFPN，S5 改 AFPN+TADDH。"},
+    {"at":"2026-08-30T19:27:16+08:00","kind":"screen","title":"当前批次启动五轮初筛","detail":"supervisor_six_full_20260830_192716.log 已启动 E0 + S1–S5，按顺序训练，完成后才进入下一阶段。"},
+    {"at":"2026-08-30T20:01:55+08:00","kind":"live","title":"当前证据：S4 正在训练","detail":"本机 /api/status?mode=screen 显示 S4 epoch 1/5、batch 146/157；不是卡死，是顺序批量训练中的实时状态。"}
+  ]
+}
