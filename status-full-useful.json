@@ -91,7 +91,7 @@
     "model": "yolo26.yaml",
     "total_epochs": 100,
     "epoch": 4,
-    "batch": 148,
+    "batch": 150,
     "batch_total": 157,
     "speed_it_s": null,
     "eta_seconds": null,
