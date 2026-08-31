@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-09-01T07:41:45+08:00",
+  "updated_at": "2026-09-01T07:43:58+08:00",
   "mode": "full",
   "mode_label": "100轮正式训练",
-  "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_full_20260831_224056.csv",
+  "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_full_20260901_reconciled.csv",
   "total": 12,
   "recorded": 12,
   "trained": 12,
