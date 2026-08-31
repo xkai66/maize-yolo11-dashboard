@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-08-31T05:24:00+08:00",
+  "updated_at": "2026-09-01T00:29:00+08:00",
   "data_scope": {
     "historical_screen_models": 290,
     "historical_screen_complete_before_retry": 64,
@@ -31,6 +31,7 @@
     {"at":"2026-08-30T21:02:27+08:00","kind":"calibration","title":"校准 monitor 与公开网页数据","detail":"full-useful 按 config_20260830_201618.json 固定为4个模型；本机接口已修复为 S2 epoch 61/100、batch 80/157、active=true、pending=1，且不再读取 screen run_dir 或旧 epoch。"},
     {"at":"2026-08-31T05:24:00+08:00","kind":"queue","title":"修复恢复入口并加入对照队列","detail":"发现 BAT 中文路径编码和 full-useful 二次筛选会阻断恢复；已改为英文 ASCII BAT、暂停快照 pending 队列直恢复，并追加 S1、S4、YOLO12n 的 100 轮纯 YAML 对照。S2/S3/S5 不重复训练。"},
     {"at":"2026-08-31T05:26:00+08:00","kind":"monitor","title":"补齐正式对照队列与手机看板状态","detail":"正式100轮对照固定为 S1–S5 + YOLO12n 共6个模型；当前按 S1 → S4 → YOLO12n 顺序训练，S2/S3/S5 使用已有完整记录。全部从 YAML 初始化，pretrained=False；100轮不执行超时跳过。"},
-    {"at":"2026-08-31T14:00:00+08:00","kind":"family","title":"加入官方 YOLO 轻量家族对照","detail":"加入 YOLO26n、YOLOv5n、YOLOv6n、YOLOv8n、YOLOv9t、YOLOv10n 六个100轮 YAML-only 对照；YOLO11n基准和YOLO12n已有结果不重复。v1/v2/v4/v7及不适合幼苗小目标的YOLOv3跳过并记录原因。"}
+    {"at":"2026-08-31T14:00:00+08:00","kind":"family","title":"加入官方 YOLO 轻量家族对照","detail":"加入 YOLO26n、YOLOv5n、YOLOv6n、YOLOv8n、YOLOv9t、YOLOv10n 六个100轮 YAML-only 对照；YOLO11n基准和YOLO12n已有结果不重复。v1/v2/v4/v7及不适合幼苗小目标的YOLOv3跳过并记录原因。"},
+    {"at":"2026-09-01T00:29:00+08:00","kind":"reconcile","title":"补齐100轮与官方页的完整记录","detail":"核验 S4-ELA-AFPN3452 与 yolov10n 均具备 100/100 results.csv 与权重；以新增校正汇总保留原始批次记录，并让100轮页显示全部正式模型、官方页显示官方家族模型。"}
   ]
 }
