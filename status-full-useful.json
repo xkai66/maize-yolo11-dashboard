@@ -1,5 +1,5 @@
 ﻿{
-  "updated_at": "2026-08-31T13:42:49+08:00",
+  "updated_at": "2026-08-31T13:43:26+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "合并所有 summary_full-useful_*.csv",
@@ -87,10 +87,9 @@
   },
   "current": {
     "index": 1,
-    "total": 1,
+    "total": 6,
     "model": "yolo26.yaml",
     "total_epochs": 100,
-    "phase": "模型构建中",
     "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_full-useful_001_yolo11-stitch-S4-ELA-AFPN3452",
     "live_map5095": "0.55831",
     "live_map50": "0.88092",
@@ -99,7 +98,7 @@
     "state": "已停止",
     "speed_it_s": null,
     "eta_seconds": null,
-    "log": "batch_full_20260831_125137.log"
+    "log": "batch_full_20260831_134315.log"
   },
   "ranking": [
     {
