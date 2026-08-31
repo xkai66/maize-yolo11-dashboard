@@ -96,6 +96,7 @@
     .status.timeout { border-color:#bd8620; background:#fff3d1; color:#7b5309; }
     .status.failed { border-color:#bd6552; background:#fae9e4; color:#8d3427; }
     .status.crash,.status.interrupted { border-color:#bd6552; background:#fae9e4; color:#8d3427; }
+    .status.incomplete { border-color:#c58a2c; background:#fff5d9; color:#7a5314; }
     .status.training { border-color:#6f8d9d; background:#e8f0f5; color:#31586d; }
     .status.build { border-color:#8b7bba; background:#eeeafb; color:#5b4d8b; }
     .score { font:800 19px Georgia,serif; }
@@ -158,6 +159,7 @@
     body.dark .status { color:#d9f5df; background:#245235; border-color:#4f9360; }
     body.dark .status.timeout { color:#ffe5a0; background:#59451d; border-color:#c49a3b; }
     body.dark .status.failed, body.dark .status.crash, body.dark .status.interrupted { color:#ffd0c4; background:#5a3028; border-color:#a96758; }
+    body.dark .status.incomplete { color:#ffe4a3; background:#604b20; border-color:#c89435; }
     body.dark .status.training { color:#d5edf9; background:#254556; border-color:#6d9bb2; }
     body.dark .status.build { color:#e3dcff; background:#3e365d; border-color:#9a8bd0; }
     body.dark .detail-panel { background:rgba(228,189,104,.13); border-color:#596e5e; }
@@ -203,8 +205,8 @@
     const param = (v) => { const n = Number(v); return Number.isFinite(n) ? n.toFixed(3) + 'M' : '—'; };
     const delta = (v) => { const n = Number(v); return Number.isFinite(n) ? (n > 0 ? '+' : '') + n.toFixed(4) : '—'; };
     const duration = (v) => { if(v === null || v === undefined || String(v).trim() === '') return '—'; const n = Number(v); if(!Number.isFinite(n) || n < 0) return '—'; const total = Math.round(n); const h=Math.floor(total/3600), m=Math.floor((total%3600)/60), s=total%60; return h ? `${h}时${String(m).padStart(2,'0')}分` : m ? `${m}分${String(s).padStart(2,'0')}秒` : `${s}秒`; };
-    const statusLabel = {reference:'基准',reference_screen:'基准',trained:'已训练',build_ok:'可构建',training:'训练中',interrupted:'中途停止',skipped_oom:'OOM跳过',skipped_timeout:'超时跳过',skipped_crash:'崩溃跳过',failed:'结构失败'};
-    const statusClass = (status) => ({trained:'trained',skipped_timeout:'timeout',failed:'failed',skipped_crash:'crash',interrupted:'interrupted',training:'training',build_ok:'build'}[status] || '');
+    const statusLabel = {reference:'基准',reference_screen:'基准',trained:'已训练',build_ok:'可构建',training:'训练中',interrupted:'中途停止',incomplete:'未完成',skipped_oom:'OOM跳过',skipped_timeout:'超时跳过',skipped_crash:'崩溃跳过',failed:'结构失败'};
+    const statusClass = (status) => ({trained:'trained',skipped_timeout:'timeout',failed:'failed',skipped_crash:'crash',interrupted:'interrupted',incomplete:'incomplete',training:'training',build_ok:'build'}[status] || '');
     const statusViewLabel = {all:'超过基准的模块',trained:'已训练模型',skipped_timeout:'超时模型',failed:'结构失败模型'};
     const requestedMode = new URLSearchParams(window.location.search).get('mode');
     let currentMode = ['historical-screen','screen','retry-timeout','full-useful','family'].includes(requestedMode) ? requestedMode : 'screen';
