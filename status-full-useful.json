@@ -1,5 +1,5 @@
 ﻿{
-  "updated_at": "2026-08-31T15:18:05+08:00",
+  "updated_at": "2026-08-31T15:18:29+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "合并所有 summary_full-useful_*.csv",
@@ -92,7 +92,7 @@
     "model": "yolov10n.yaml",
     "total_epochs": 100,
     "epoch": 10,
-    "batch": 41,
+    "batch": 155,
     "batch_total": 157,
     "speed_it_s": null,
     "eta_seconds": null,
