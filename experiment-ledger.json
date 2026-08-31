@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-09-01T00:52:00+08:00",
+  "updated_at": "2026-09-01T09:00:00+08:00",
   "data_scope": {
     "historical_screen_models": 290,
     "historical_screen_complete_before_retry": 64,
@@ -34,6 +34,7 @@
     {"at":"2026-08-31T14:00:00+08:00","kind":"family","title":"加入官方 YOLO 轻量家族对照","detail":"加入 YOLO26n、YOLOv5n、YOLOv6n、YOLOv8n、YOLOv9t、YOLOv10n 六个100轮 YAML-only 对照；YOLO11n基准和YOLO12n已有结果不重复。v1/v2/v4/v7及不适合幼苗小目标的YOLOv3跳过并记录原因。"},
     {"at":"2026-09-01T00:29:00+08:00","kind":"reconcile","title":"补齐100轮与官方页的完整记录","detail":"核验 S4-ELA-AFPN3452 与 yolov10n 均具备 100/100 results.csv 与权重；以新增校正汇总保留原始批次记录，并让100轮页显示全部正式模型、官方页显示官方家族模型。"},
     {"at":"2026-09-01T00:36:21+08:00","kind":"page-routing","title":"官方页与100轮页统一显示100轮全量记录","detail":"按补充要求取消 full 官方页的模型名单过滤；官方家族对照与100轮正式两个分页均读取同一份已记录的100轮汇总，不再按是否超过 yolo11n 基准筛掉 S3、S4、yolov10n、yolo26 等结果。"},
-    {"at":"2026-09-01T00:52:00+08:00","kind":"naming","title":"统一 YOLO nano 家族展示名","detail":"网页与生成的状态汇总统一使用 yolo5n、yolo6n、yolo8n、yolo10n、yolo11n、yolo12n、yolo26n；yolo9t 保留官方 t 规格。真实 YAML 文件名、run_dir 和原始 summary CSV 不覆盖，展示层通过映射保持结果关联。"}
+    {"at":"2026-09-01T00:52:00+08:00","kind":"naming","title":"统一 YOLO nano 家族展示名","detail":"网页与生成的状态汇总统一使用 yolo5n、yolo6n、yolo8n、yolo10n、yolo11n、yolo12n、yolo26n；yolo9t 保留官方 t 规格。真实 YAML 文件名、run_dir 和原始 summary CSV 不覆盖，展示层通过映射保持结果关联。"},
+    {"at":"2026-09-01T09:00:00+08:00","kind":"reconcile","title":"yolo10n 以 yolo10n3 完整训练证据优先","detail":"确认 batch_full_002_yolov10n3 已完成 100/100（results.csv 共101行含表头）、运行2414秒、mAP50-95为0.55083且存在 weights/best.pt；合并逻辑改为有完整数据的 trained 优先，后续 failed 不得覆盖，网页 yolo10n 统一指向该记录。"}
   ]
 }
