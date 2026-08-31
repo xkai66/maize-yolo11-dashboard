@@ -1,12 +1,12 @@
 ﻿{
-  "updated_at": "2026-08-31T10:36:52+08:00",
+  "updated_at": "2026-08-31T10:37:27+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "合并所有 summary_full-useful_*.csv",
   "total": 6,
   "recorded": 4,
-  "trained": 3,
-  "interrupted": 1,
+  "trained": 4,
+  "interrupted": 0,
   "failed": 0,
   "skipped_oom": 0,
   "skipped_timeout": 0,
@@ -160,6 +160,38 @@
     },
     {
       "rank": 2,
+      "model": "yolo11-stitch-S1-MM-AFPN345.yaml",
+      "status": "trained",
+      "best_epoch": "99",
+      "precision": "0.8599",
+      "recall": "0.82803",
+      "map50": "0.87795",
+      "map5095": "0.55453",
+      "parameters": "2661144",
+      "parameters_m": "2.661144",
+      "layers": "",
+      "gflops": "",
+      "delta_map5095": "+0.0064",
+      "delta_parameters_m": "+0.071",
+      "delta_screen_map5095": "+0.2868",
+      "module_usefulness": "初筛有用模块",
+      "verdict": "精度超过基准",
+      "convergence": "趋于稳定",
+      "convergence_detail": "最近10轮 mAP提升 +0.0097，P波动 0.0083，R波动 0.0138，验证损失变化 -0.0404",
+      "log_evidence": "日志 status=trained · 完成 100/100 轮",
+      "error": "",
+      "image_url": "/api/result-image?run_dir=C:/Users/xkai2/Desktop/训练集/yolov11/runs/batch_full-useful_001_yolo11-stitch-S1-MM-AFPN3452",
+      "module": "stitch-s1-mm-afpn345",
+      "position": "Neck / 特征融合",
+      "effect": "改变多尺度特征融合路径，增强不同尺度目标信息交互",
+      "runtime_seconds": 15938.0,
+      "avg_epoch_seconds": 159.4,
+      "estimated_total_seconds": 15938.0,
+      "delta_runtime_seconds": "+13330.8",
+      "data_status": "数据完整"
+    },
+    {
+      "rank": 3,
       "model": "yolo11-stitch-S2-EV-AFPN345.yaml",
       "status": "trained",
       "best_epoch": "99",
@@ -191,7 +223,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 3,
+      "rank": 4,
       "model": "yolo11-stitch-S3-ELA-TADDH.yaml",
       "status": "trained",
       "best_epoch": "100",
@@ -223,7 +255,7 @@
       "data_status": "数据完整"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "model": "yolo11-stitch-S4-ELA-AFPN345.yaml",
       "status": "pending",
       "best_epoch": "",
@@ -253,38 +285,6 @@
       "estimated_total_seconds": "",
       "delta_runtime_seconds": "",
       "data_status": "缺耗时：日志无完整结束记录；缺mAP：未找到results.csv；缺参数/GFLOPs：日志未记录"
-    },
-    {
-      "rank": 5,
-      "model": "yolo11-stitch-S1-MM-AFPN345.yaml",
-      "status": "interrupted",
-      "best_epoch": "",
-      "precision": "",
-      "recall": "",
-      "map50": "",
-      "map5095": "",
-      "parameters": "2661144",
-      "parameters_m": "2.661144",
-      "layers": "",
-      "gflops": "",
-      "delta_map5095": "",
-      "delta_parameters_m": "+0.071",
-      "delta_screen_map5095": "",
-      "module_usefulness": "数据不完整",
-      "verdict": "中途停止",
-      "convergence": "未训练",
-      "convergence_detail": "该模型未完成训练或未形成完整结果",
-      "log_evidence": "日志未正常收尾 · 完成 0/100 轮 · 不计入已训练 · 未记录结束错误",
-      "error": "",
-      "image_url": "",
-      "module": "stitch-s1-mm-afpn345",
-      "position": "Neck / 特征融合",
-      "effect": "改变多尺度特征融合路径，增强不同尺度目标信息交互",
-      "runtime_seconds": 15938.0,
-      "avg_epoch_seconds": "",
-      "estimated_total_seconds": "",
-      "delta_runtime_seconds": "+13330.8",
-      "data_status": "训练未正常收尾：不计入已训练；缺最终mAP：未完成验证"
     },
     {
       "rank": 6,
@@ -1735,9 +1735,716 @@
       ]
     },
     {
+      "key": "yolo11-stitch-S1-MM-AFPN345.yaml",
+      "label": "yolo11-stitch-S1-MM-AFPN345.yaml",
+      "color": "#bd6248",
+      "points": [
+        {
+          "epoch": 1.0,
+          "map5095": 0.00327,
+          "map50": 0.01316,
+          "precision": 0.01046,
+          "recall": 0.19548
+        },
+        {
+          "epoch": 2.0,
+          "map5095": 0.08079,
+          "map50": 0.23576,
+          "precision": 0.28138,
+          "recall": 0.58559
+        },
+        {
+          "epoch": 3.0,
+          "map5095": 0.10328,
+          "map50": 0.29729,
+          "precision": 0.33003,
+          "recall": 0.44195
+        },
+        {
+          "epoch": 4.0,
+          "map5095": 0.20291,
+          "map50": 0.55889,
+          "precision": 0.59396,
+          "recall": 0.56366
+        },
+        {
+          "epoch": 5.0,
+          "map5095": 0.30443,
+          "map50": 0.68806,
+          "precision": 0.7288,
+          "recall": 0.61347
+        },
+        {
+          "epoch": 6.0,
+          "map5095": 0.3348,
+          "map50": 0.72183,
+          "precision": 0.74053,
+          "recall": 0.65264
+        },
+        {
+          "epoch": 7.0,
+          "map5095": 0.324,
+          "map50": 0.71046,
+          "precision": 0.71219,
+          "recall": 0.66883
+        },
+        {
+          "epoch": 8.0,
+          "map5095": 0.36074,
+          "map50": 0.75396,
+          "precision": 0.73849,
+          "recall": 0.68662
+        },
+        {
+          "epoch": 9.0,
+          "map5095": 0.4039,
+          "map50": 0.77604,
+          "precision": 0.77631,
+          "recall": 0.71301
+        },
+        {
+          "epoch": 10.0,
+          "map5095": 0.41501,
+          "map50": 0.79295,
+          "precision": 0.78214,
+          "recall": 0.72804
+        },
+        {
+          "epoch": 11.0,
+          "map5095": 0.41156,
+          "map50": 0.79151,
+          "precision": 0.79004,
+          "recall": 0.72711
+        },
+        {
+          "epoch": 12.0,
+          "map5095": 0.44425,
+          "map50": 0.80339,
+          "precision": 0.80374,
+          "recall": 0.74363
+        },
+        {
+          "epoch": 13.0,
+          "map5095": 0.43304,
+          "map50": 0.80248,
+          "precision": 0.79976,
+          "recall": 0.73965
+        },
+        {
+          "epoch": 14.0,
+          "map5095": 0.45219,
+          "map50": 0.80709,
+          "precision": 0.81823,
+          "recall": 0.74358
+        },
+        {
+          "epoch": 15.0,
+          "map5095": 0.44606,
+          "map50": 0.81105,
+          "precision": 0.81028,
+          "recall": 0.74255
+        },
+        {
+          "epoch": 16.0,
+          "map5095": 0.46418,
+          "map50": 0.81923,
+          "precision": 0.8282,
+          "recall": 0.7501
+        },
+        {
+          "epoch": 17.0,
+          "map5095": 0.46205,
+          "map50": 0.82332,
+          "precision": 0.79883,
+          "recall": 0.757
+        },
+        {
+          "epoch": 18.0,
+          "map5095": 0.4585,
+          "map50": 0.82562,
+          "precision": 0.81829,
+          "recall": 0.76525
+        },
+        {
+          "epoch": 19.0,
+          "map5095": 0.45655,
+          "map50": 0.81889,
+          "precision": 0.81428,
+          "recall": 0.75554
+        },
+        {
+          "epoch": 20.0,
+          "map5095": 0.46484,
+          "map50": 0.82723,
+          "precision": 0.81981,
+          "recall": 0.76177
+        },
+        {
+          "epoch": 21.0,
+          "map5095": 0.47796,
+          "map50": 0.83381,
+          "precision": 0.8349,
+          "recall": 0.77061
+        },
+        {
+          "epoch": 22.0,
+          "map5095": 0.48383,
+          "map50": 0.83359,
+          "precision": 0.81709,
+          "recall": 0.77596
+        },
+        {
+          "epoch": 23.0,
+          "map5095": 0.48738,
+          "map50": 0.83085,
+          "precision": 0.82453,
+          "recall": 0.76054
+        },
+        {
+          "epoch": 24.0,
+          "map5095": 0.48002,
+          "map50": 0.83737,
+          "precision": 0.81659,
+          "recall": 0.77642
+        },
+        {
+          "epoch": 25.0,
+          "map5095": 0.48834,
+          "map50": 0.82971,
+          "precision": 0.82697,
+          "recall": 0.77146
+        },
+        {
+          "epoch": 26.0,
+          "map5095": 0.48676,
+          "map50": 0.84133,
+          "precision": 0.82686,
+          "recall": 0.77087
+        },
+        {
+          "epoch": 27.0,
+          "map5095": 0.49603,
+          "map50": 0.84213,
+          "precision": 0.84161,
+          "recall": 0.78112
+        },
+        {
+          "epoch": 28.0,
+          "map5095": 0.49439,
+          "map50": 0.84299,
+          "precision": 0.8343,
+          "recall": 0.78021
+        },
+        {
+          "epoch": 29.0,
+          "map5095": 0.50054,
+          "map50": 0.84458,
+          "precision": 0.8336,
+          "recall": 0.7811
+        },
+        {
+          "epoch": 30.0,
+          "map5095": 0.49786,
+          "map50": 0.84377,
+          "precision": 0.83897,
+          "recall": 0.78427
+        },
+        {
+          "epoch": 31.0,
+          "map5095": 0.4997,
+          "map50": 0.84606,
+          "precision": 0.8283,
+          "recall": 0.78608
+        },
+        {
+          "epoch": 32.0,
+          "map5095": 0.49856,
+          "map50": 0.84495,
+          "precision": 0.83535,
+          "recall": 0.78955
+        },
+        {
+          "epoch": 33.0,
+          "map5095": 0.50157,
+          "map50": 0.85226,
+          "precision": 0.83951,
+          "recall": 0.79335
+        },
+        {
+          "epoch": 34.0,
+          "map5095": 0.50776,
+          "map50": 0.8467,
+          "precision": 0.83513,
+          "recall": 0.7902
+        },
+        {
+          "epoch": 35.0,
+          "map5095": 0.50626,
+          "map50": 0.85169,
+          "precision": 0.83073,
+          "recall": 0.79517
+        },
+        {
+          "epoch": 36.0,
+          "map5095": 0.49863,
+          "map50": 0.84956,
+          "precision": 0.83,
+          "recall": 0.78947
+        },
+        {
+          "epoch": 37.0,
+          "map5095": 0.50914,
+          "map50": 0.84583,
+          "precision": 0.84582,
+          "recall": 0.78618
+        },
+        {
+          "epoch": 38.0,
+          "map5095": 0.51032,
+          "map50": 0.85368,
+          "precision": 0.83929,
+          "recall": 0.7957
+        },
+        {
+          "epoch": 39.0,
+          "map5095": 0.50892,
+          "map50": 0.85132,
+          "precision": 0.84801,
+          "recall": 0.7846
+        },
+        {
+          "epoch": 40.0,
+          "map5095": 0.51671,
+          "map50": 0.85294,
+          "precision": 0.84499,
+          "recall": 0.78923
+        },
+        {
+          "epoch": 41.0,
+          "map5095": 0.51392,
+          "map50": 0.85017,
+          "precision": 0.83264,
+          "recall": 0.78977
+        },
+        {
+          "epoch": 42.0,
+          "map5095": 0.50974,
+          "map50": 0.85481,
+          "precision": 0.83877,
+          "recall": 0.79802
+        },
+        {
+          "epoch": 43.0,
+          "map5095": 0.51811,
+          "map50": 0.85994,
+          "precision": 0.85071,
+          "recall": 0.79563
+        },
+        {
+          "epoch": 44.0,
+          "map5095": 0.52193,
+          "map50": 0.86119,
+          "precision": 0.84512,
+          "recall": 0.80211
+        },
+        {
+          "epoch": 45.0,
+          "map5095": 0.52009,
+          "map50": 0.8569,
+          "precision": 0.8488,
+          "recall": 0.79858
+        },
+        {
+          "epoch": 46.0,
+          "map5095": 0.5163,
+          "map50": 0.85976,
+          "precision": 0.84067,
+          "recall": 0.7991
+        },
+        {
+          "epoch": 47.0,
+          "map5095": 0.51533,
+          "map50": 0.85338,
+          "precision": 0.84421,
+          "recall": 0.79392
+        },
+        {
+          "epoch": 48.0,
+          "map5095": 0.5224,
+          "map50": 0.86109,
+          "precision": 0.84499,
+          "recall": 0.80307
+        },
+        {
+          "epoch": 49.0,
+          "map5095": 0.52106,
+          "map50": 0.8595,
+          "precision": 0.85311,
+          "recall": 0.79847
+        },
+        {
+          "epoch": 50.0,
+          "map5095": 0.52184,
+          "map50": 0.86161,
+          "precision": 0.85132,
+          "recall": 0.80311
+        },
+        {
+          "epoch": 51.0,
+          "map5095": 0.52566,
+          "map50": 0.86212,
+          "precision": 0.84829,
+          "recall": 0.8031
+        },
+        {
+          "epoch": 52.0,
+          "map5095": 0.52815,
+          "map50": 0.86361,
+          "precision": 0.84515,
+          "recall": 0.80521
+        },
+        {
+          "epoch": 53.0,
+          "map5095": 0.52545,
+          "map50": 0.86058,
+          "precision": 0.85236,
+          "recall": 0.80618
+        },
+        {
+          "epoch": 54.0,
+          "map5095": 0.52723,
+          "map50": 0.86276,
+          "precision": 0.85386,
+          "recall": 0.80329
+        },
+        {
+          "epoch": 55.0,
+          "map5095": 0.52549,
+          "map50": 0.86241,
+          "precision": 0.84922,
+          "recall": 0.80773
+        },
+        {
+          "epoch": 56.0,
+          "map5095": 0.5306,
+          "map50": 0.86079,
+          "precision": 0.8534,
+          "recall": 0.79882
+        },
+        {
+          "epoch": 57.0,
+          "map5095": 0.52763,
+          "map50": 0.8551,
+          "precision": 0.8417,
+          "recall": 0.79737
+        },
+        {
+          "epoch": 58.0,
+          "map5095": 0.52886,
+          "map50": 0.86248,
+          "precision": 0.8524,
+          "recall": 0.79909
+        },
+        {
+          "epoch": 59.0,
+          "map5095": 0.53384,
+          "map50": 0.86596,
+          "precision": 0.85188,
+          "recall": 0.80051
+        },
+        {
+          "epoch": 60.0,
+          "map5095": 0.53375,
+          "map50": 0.86671,
+          "precision": 0.85275,
+          "recall": 0.80726
+        },
+        {
+          "epoch": 61.0,
+          "map5095": 0.53502,
+          "map50": 0.86696,
+          "precision": 0.85026,
+          "recall": 0.80903
+        },
+        {
+          "epoch": 62.0,
+          "map5095": 0.53428,
+          "map50": 0.86936,
+          "precision": 0.86181,
+          "recall": 0.8011
+        },
+        {
+          "epoch": 63.0,
+          "map5095": 0.53246,
+          "map50": 0.86476,
+          "precision": 0.85357,
+          "recall": 0.80751
+        },
+        {
+          "epoch": 64.0,
+          "map5095": 0.53512,
+          "map50": 0.86662,
+          "precision": 0.85351,
+          "recall": 0.80709
+        },
+        {
+          "epoch": 65.0,
+          "map5095": 0.53632,
+          "map50": 0.86965,
+          "precision": 0.8497,
+          "recall": 0.81035
+        },
+        {
+          "epoch": 66.0,
+          "map5095": 0.53793,
+          "map50": 0.87112,
+          "precision": 0.85397,
+          "recall": 0.81087
+        },
+        {
+          "epoch": 67.0,
+          "map5095": 0.54109,
+          "map50": 0.87178,
+          "precision": 0.85521,
+          "recall": 0.81196
+        },
+        {
+          "epoch": 68.0,
+          "map5095": 0.53814,
+          "map50": 0.86917,
+          "precision": 0.84879,
+          "recall": 0.81017
+        },
+        {
+          "epoch": 69.0,
+          "map5095": 0.53938,
+          "map50": 0.87307,
+          "precision": 0.85029,
+          "recall": 0.81467
+        },
+        {
+          "epoch": 70.0,
+          "map5095": 0.53871,
+          "map50": 0.86988,
+          "precision": 0.85739,
+          "recall": 0.8064
+        },
+        {
+          "epoch": 71.0,
+          "map5095": 0.54254,
+          "map50": 0.87004,
+          "precision": 0.86751,
+          "recall": 0.80148
+        },
+        {
+          "epoch": 72.0,
+          "map5095": 0.54201,
+          "map50": 0.87181,
+          "precision": 0.85142,
+          "recall": 0.81503
+        },
+        {
+          "epoch": 73.0,
+          "map5095": 0.54101,
+          "map50": 0.87168,
+          "precision": 0.85986,
+          "recall": 0.8056
+        },
+        {
+          "epoch": 74.0,
+          "map5095": 0.54038,
+          "map50": 0.86985,
+          "precision": 0.85371,
+          "recall": 0.81269
+        },
+        {
+          "epoch": 75.0,
+          "map5095": 0.54247,
+          "map50": 0.87383,
+          "precision": 0.86048,
+          "recall": 0.81356
+        },
+        {
+          "epoch": 76.0,
+          "map5095": 0.54375,
+          "map50": 0.87172,
+          "precision": 0.86619,
+          "recall": 0.8096
+        },
+        {
+          "epoch": 77.0,
+          "map5095": 0.54367,
+          "map50": 0.8725,
+          "precision": 0.85826,
+          "recall": 0.81176
+        },
+        {
+          "epoch": 78.0,
+          "map5095": 0.54496,
+          "map50": 0.87315,
+          "precision": 0.86345,
+          "recall": 0.81026
+        },
+        {
+          "epoch": 79.0,
+          "map5095": 0.54372,
+          "map50": 0.87145,
+          "precision": 0.85844,
+          "recall": 0.81227
+        },
+        {
+          "epoch": 80.0,
+          "map5095": 0.54562,
+          "map50": 0.87274,
+          "precision": 0.86133,
+          "recall": 0.81346
+        },
+        {
+          "epoch": 81.0,
+          "map5095": 0.54535,
+          "map50": 0.87393,
+          "precision": 0.86245,
+          "recall": 0.81283
+        },
+        {
+          "epoch": 82.0,
+          "map5095": 0.5423,
+          "map50": 0.87137,
+          "precision": 0.85375,
+          "recall": 0.81509
+        },
+        {
+          "epoch": 83.0,
+          "map5095": 0.54757,
+          "map50": 0.87553,
+          "precision": 0.86004,
+          "recall": 0.81169
+        },
+        {
+          "epoch": 84.0,
+          "map5095": 0.54198,
+          "map50": 0.8692,
+          "precision": 0.85517,
+          "recall": 0.81665
+        },
+        {
+          "epoch": 85.0,
+          "map5095": 0.54673,
+          "map50": 0.87324,
+          "precision": 0.85973,
+          "recall": 0.81318
+        },
+        {
+          "epoch": 86.0,
+          "map5095": 0.54826,
+          "map50": 0.87699,
+          "precision": 0.85736,
+          "recall": 0.81673
+        },
+        {
+          "epoch": 87.0,
+          "map5095": 0.54652,
+          "map50": 0.87301,
+          "precision": 0.86621,
+          "recall": 0.81077
+        },
+        {
+          "epoch": 88.0,
+          "map5095": 0.54995,
+          "map50": 0.87479,
+          "precision": 0.85784,
+          "recall": 0.8222
+        },
+        {
+          "epoch": 89.0,
+          "map5095": 0.54688,
+          "map50": 0.87549,
+          "precision": 0.85592,
+          "recall": 0.81703
+        },
+        {
+          "epoch": 90.0,
+          "map5095": 0.54862,
+          "map50": 0.87437,
+          "precision": 0.86232,
+          "recall": 0.81718
+        },
+        {
+          "epoch": 91.0,
+          "map5095": 0.54478,
+          "map50": 0.87376,
+          "precision": 0.85752,
+          "recall": 0.81456
+        },
+        {
+          "epoch": 92.0,
+          "map5095": 0.54819,
+          "map50": 0.87336,
+          "precision": 0.8574,
+          "recall": 0.82047
+        },
+        {
+          "epoch": 93.0,
+          "map5095": 0.549,
+          "map50": 0.87564,
+          "precision": 0.85753,
+          "recall": 0.82193
+        },
+        {
+          "epoch": 94.0,
+          "map5095": 0.55165,
+          "map50": 0.87756,
+          "precision": 0.8606,
+          "recall": 0.82282
+        },
+        {
+          "epoch": 95.0,
+          "map5095": 0.55138,
+          "map50": 0.8765,
+          "precision": 0.86025,
+          "recall": 0.82338
+        },
+        {
+          "epoch": 96.0,
+          "map5095": 0.55137,
+          "map50": 0.87657,
+          "precision": 0.86346,
+          "recall": 0.82223
+        },
+        {
+          "epoch": 97.0,
+          "map5095": 0.55227,
+          "map50": 0.87905,
+          "precision": 0.86042,
+          "recall": 0.82833
+        },
+        {
+          "epoch": 98.0,
+          "map5095": 0.5536,
+          "map50": 0.87772,
+          "precision": 0.85893,
+          "recall": 0.82318
+        },
+        {
+          "epoch": 99.0,
+          "map5095": 0.55453,
+          "map50": 0.87795,
+          "precision": 0.8599,
+          "recall": 0.82803
+        },
+        {
+          "epoch": 100.0,
+          "map5095": 0.55437,
+          "map50": 0.87756,
+          "precision": 0.86575,
+          "recall": 0.82069
+        }
+      ]
+    },
+    {
       "key": "yolo11-stitch-S2-EV-AFPN345.yaml",
       "label": "yolo11-stitch-S2-EV-AFPN345.yaml",
-      "color": "#bd6248",
+      "color": "#4e83a8",
       "points": [
         {
           "epoch": 1.0,
