@@ -1,5 +1,5 @@
 ﻿{
-  "updated_at": "2026-09-01T00:30:17+08:00",
+  "updated_at": "2026-09-01T00:31:37+08:00",
   "mode": "full-useful",
   "mode_label": "100轮正式训练",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_full-useful_20260901_reconciled.csv",
@@ -91,7 +91,7 @@
     "model": "yolov6.yaml",
     "total_epochs": 100,
     "epoch": "5",
-    "batch": 96,
+    "batch": 74,
     "batch_total": 157,
     "speed_it_s": null,
     "eta_seconds": null,
