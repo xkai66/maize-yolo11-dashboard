@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:49:16+08:00",
+  "updated_at": "2026-09-02T21:50:19+08:00",
   "mode": "full",
   "mode_label": "官方 YOLO 家族对照",
   "summary_file": "按固定官方名单合并所有 summary_full_*.csv + 完整 runs/results.csv",
