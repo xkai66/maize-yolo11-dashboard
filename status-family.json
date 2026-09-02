@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T21:59:10+08:00",
+  "updated_at": "2026-09-02T21:59:59+08:00",
   "mode": "full",
   "mode_label": "官方 YOLO 家族对照",
   "summary_file": "按固定官方名单合并所有 summary_full_*.csv + 完整 runs/results.csv",
@@ -87,15 +87,15 @@
     "estimated_total_seconds": 130.4
   },
   "current": {
-    "index": 1,
+    "index": 2,
     "total": 2,
-    "model": "yolo11-stitch-S7-A2C2f-AFPN345.yaml",
+    "model": "yolo11-stitch-S8-A2C2f-TADDH.yaml",
     "total_epochs": 100,
     "epoch": "100",
     "eta_text": "—",
-    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_full_001_yolo11-GELANLite",
-    "live_map5095": "0.54481",
-    "live_map50": "0.8744",
+    "run_dir": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\runs\\batch_full_002_yolov10n3",
+    "live_map5095": "0.55083",
+    "live_map50": "0.87732",
     "active": false,
     "state": "已停止",
     "speed_it_s": null,
