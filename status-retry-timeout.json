@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-02T18:55:50+08:00",
+  "updated_at": "2026-09-02T18:59:06+08:00",
   "mode": "retry-timeout",
   "mode_label": "超时复跑",
   "summary_file": "C:\\Users\\xkai2\\Desktop\\训练集\\yolov11\\logs\\batch_experiments\\summary_retry-timeout_20260830_120004.csv",
