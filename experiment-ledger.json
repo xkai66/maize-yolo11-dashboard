@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1",
-  "updated_at": "2026-09-01T09:00:00+08:00",
+  "updated_at": "2026-09-04T12:00:30+08:00",
   "data_scope": {
     "historical_screen_models": 290,
     "historical_screen_complete_before_retry": 64,
@@ -9,7 +9,26 @@
     "full_useful_complete": 3,
     "full_useful_pending": 3,
     "family_baseline_pending": 6,
-    "formal_comparison_models": 6
+    "formal_comparison_models": 6,
+    "resource_scope_total": 296,
+    "distillation_formal_matrix_models": 5,
+    "distillation_students_completed": 4,
+    "distillation_onnx_verified": 5,
+    "jetson_engine_pending": 5
+  },
+  "latest_update": {
+    "as_of": "2026-09-04",
+    "title": "新增教师、蒸馏矩阵、ONNX 与视频证据",
+    "teacher": {"model": "YOLO11x", "epochs": 100, "best_map5095": 0.57847, "deployment": "训练阶段使用，禁止部署"},
+    "students": [
+      {"id": "student_fast50_no_kd_100", "label": "Fast50 no-KD", "epochs": 100, "best_map5095": 0.51853, "pc_screen_e2e_fps": 90.85, "kd": false},
+      {"id": "student_fast50_kd_100", "label": "Fast50 KD", "epochs": 100, "best_map5095": 0.51827, "pc_screen_e2e_fps": 90.85, "kd": true},
+      {"id": "student_fast40_no_kd_100", "label": "Fast40 no-KD", "epochs": 100, "best_map5095": 0.50777, "pc_screen_e2e_fps": 92.83, "kd": false},
+      {"id": "student_fast40_kd_100", "label": "Fast40 KD", "epochs": 100, "best_map5095": 0.50785, "pc_screen_e2e_fps": 92.83, "kd": true}
+    ],
+    "onnx": {"count": 5, "shape": "[1,3,640,640]", "opset": 17, "checker": "5/5 passed", "teacher_tokens": "none"},
+    "pc_video": {"frames": 224, "warmup": 50, "baseline_e2e_fps": 63.37, "fast50_kd_e2e_fps": 58.22, "fast40_kd_e2e_fps": 59.87},
+    "jetson": {"status": "待 Orin Nano Super 8GB 真机构建 FP16 engine", "final_gate": "Jetson engine FPS > YOLO11n engine FPS 且 mAP > 0.54809"}
   },
   "current_batch": [
     {"id":"E0","name":"yolo11.yaml","alias":"基准 yolo11n","a":"原始 C3k2","b":"原始 PAN","c":"原始 Detect","position":"Backbone + Neck + Head"},
@@ -35,6 +54,11 @@
     {"at":"2026-09-01T00:29:00+08:00","kind":"reconcile","title":"补齐100轮与官方页的完整记录","detail":"核验 S4-ELA-AFPN3452 与 yolov10n 均具备 100/100 results.csv 与权重；以新增校正汇总保留原始批次记录，并让100轮页显示全部正式模型、官方页显示官方家族模型。"},
     {"at":"2026-09-01T00:36:21+08:00","kind":"page-routing","title":"官方页与100轮页统一显示100轮全量记录","detail":"按补充要求取消 full 官方页的模型名单过滤；官方家族对照与100轮正式两个分页均读取同一份已记录的100轮汇总，不再按是否超过 yolo11n 基准筛掉 S3、S4、yolov10n、yolo26 等结果。"},
     {"at":"2026-09-01T00:52:00+08:00","kind":"naming","title":"统一 YOLO nano 家族展示名","detail":"网页与生成的状态汇总统一使用 yolo5n、yolo6n、yolo8n、yolo10n、yolo11n、yolo12n、yolo26n；yolo9t 保留官方 t 规格。真实 YAML 文件名、run_dir 和原始 summary CSV 不覆盖，展示层通过映射保持结果关联。"},
-    {"at":"2026-09-01T09:00:00+08:00","kind":"reconcile","title":"yolo10n 以 yolo10n3 完整训练证据优先","detail":"确认 batch_full_002_yolov10n3 已完成 100/100（results.csv 共101行含表头）、运行2414秒、mAP50-95为0.55083且存在 weights/best.pt；合并逻辑改为有完整数据的 trained 优先，后续 failed 不得覆盖，网页 yolo10n 统一指向该记录。"}
+    {"at":"2026-09-01T09:00:00+08:00","kind":"reconcile","title":"yolo10n 以 yolo10n3 完整训练证据优先","detail":"确认 batch_full_002_yolov10n3 已完成 100/100（results.csv 共101行含表头）、运行2414秒、mAP50-95为0.55083且存在 weights/best.pt；合并逻辑改为有完整数据的 trained 优先，后续 failed 不得覆盖，网页 yolo10n 统一指向该记录。"},
+    {"at":"2026-09-03T16:42:34+08:00","kind":"full","title":"S18-LiteWidth20-SE-P4 完成100轮独立精度队列","detail":"同一7:1:2正式数据协议下完成100轮；该队列与Fast50/Fast40蒸馏矩阵分开记录，不能把10轮初筛速度直接当作正式部署结论。"},
+    {"at":"2026-09-04T06:33:57+08:00","kind":"distillation","title":"YOLO11x教师与Fast50正式蒸馏完成","detail":"YOLO11x教师100轮最佳mAP50-95=0.57847；Fast50 no-KD/KD均完成100轮，mAP分别为0.51853/0.51827，均低于YOLO11n基线0.54809。教师只在训练阶段使用。"},
+    {"at":"2026-09-04T08:47:20+08:00","kind":"distillation","title":"Fast40正式蒸馏矩阵完成","detail":"Fast40 no-KD/KD均完成100轮，mAP分别为0.50777/0.50785；四个学生正式结果均已归档，当前尚未通过精度门。"},
+    {"at":"2026-09-04T10:30:00+08:00","kind":"export","title":"五个部署图完成固定形状ONNX核验","detail":"YOLO11n基线+四组正式学生均导出FP16、640×640、batch=1、opset17 ONNX；输入输出形状正确，onnx.checker 5/5通过，图中无教师节点。"},
+    {"at":"2026-09-04T12:00:30+08:00","kind":"benchmark","title":"同一视频PC对比补录完成，Jetson闸门保留","detail":"同一视频 warmup=50、有效224帧：基线视频e2e 63.37 FPS，Fast50 KD 58.22 FPS，Fast40 KD 59.87 FPS；纯推理分别为101.96/102.20/103.48 FPS。以上是PC PyTorch CUDA参考，最终仍待Jetson TensorRT engine。"}
   ]
 }

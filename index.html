@@ -118,6 +118,33 @@
     .result-shot { border:1px solid var(--line); border-radius:12px; overflow:hidden; background:var(--panel); }
     .result-shot img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; background:#ecebe4; }
     .result-shot figcaption { padding:10px; color:var(--muted); font:700 11px/1.4 ui-monospace,monospace; overflow-wrap:anywhere; }
+    .distill-card { margin-top:14px; scroll-margin-top:18px; }
+    .distill-intro { margin:-4px 0 16px; color:var(--muted); font-size:13px; line-height:1.65; }
+    .distill-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .distill-item { min-width:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--panel); }
+    .distill-item h3 { margin:0; padding:13px 14px 4px; font:800 18px Georgia,serif; }
+    .distill-tag { display:block; padding:0 14px 11px; color:var(--muted); font:700 10px ui-monospace,monospace; letter-spacing:.06em; }
+    .distill-video { display:block; width:100%; aspect-ratio:16/9; object-fit:contain; background:#0c100d; }
+    .distill-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:13px 14px 14px; }
+    .distill-stat { padding:9px 10px; border:1px solid var(--line); border-radius:9px; }
+    .distill-stat b { display:block; color:var(--muted); font:700 10px ui-monospace,monospace; letter-spacing:.05em; }
+    .distill-stat span { display:block; margin-top:4px; font:800 17px Georgia,serif; }
+    .distill-stat small { color:var(--muted); font:600 10px ui-monospace,monospace; }
+    .distill-link { display:inline-block; margin-top:15px; color:var(--leaf); font-weight:800; }
+    .distill-note { margin:15px 0 0; padding:11px 13px; border-left:4px solid var(--maize); border-radius:8px; color:var(--muted); background:rgba(224,168,46,.09); font-size:12px; line-height:1.6; }
+    .latest-card { margin-top:14px; scroll-margin-top:18px; }
+    .latest-lede { margin:-4px 0 16px; color:var(--muted); font-size:13px; line-height:1.65; }
+    .latest-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+    .latest-item { min-width:0; border:1px solid var(--line); border-radius:12px; padding:12px; background:var(--panel); }
+    .latest-item b { display:block; color:var(--muted); font:700 10px ui-monospace,monospace; letter-spacing:.06em; }
+    .latest-item strong { display:block; margin-top:5px; font:800 22px Georgia,serif; }
+    .latest-item span { display:block; margin-top:3px; color:var(--muted); font-size:11px; line-height:1.45; }
+    .latest-status { display:flex; flex-wrap:wrap; gap:7px; margin:15px 0 14px; }
+    .latest-status span { padding:6px 9px; border:1px solid var(--line); border-radius:999px; color:var(--leaf); background:rgba(82,118,95,.08); font:800 11px ui-monospace,monospace; }
+    .latest-status span.pending { color:#7b5309; background:#fff3d1; border-color:#bd8620; }
+    .latest-table { overflow:auto; margin-top:14px; }
+    .latest-table table { min-width:760px; }
+    .latest-table td, .latest-table th { white-space:nowrap; }
     .curve-legend i { display:inline-block; width:18px; height:3px; margin:0 5px 3px 0; vertical-align:middle; }
     .side p { line-height:1.65; color:var(--muted); font-size:13px; }
     .legend { display:grid; gap:10px; margin-top:18px; }
@@ -171,16 +198,40 @@
     body.dark .curve-legend span { color:#d2ded5; }
     body.dark .result-shot { background:#202d25; border-color:#53675a; }
     body.dark .result-shot img { background:#101712; }
+    body.dark .distill-item { background:#202d25; border-color:#53675a; }
+    body.dark .distill-stat { border-color:#53675a; background:#19231d; }
+    body.dark .distill-note { background:rgba(228,189,104,.13); }
+    body.dark .latest-item { background:#202d25; border-color:#53675a; }
+    body.dark .latest-status span { color:#d7f4dc; background:#214b2d; border-color:#70ba7f; }
+    body.dark .latest-status span.pending { color:#ffe8a6; background:#5a431c; border-color:#d0a548; }
   </style>
 </head>
 <body>
   <main class="wrap">
-    <nav class="site-nav" aria-label="实验页面导航"><a href="./" aria-current="page">监控看板</a><a href="./todo.html">实验 TODO</a><a href="https://xkai66.github.io/yolo11-stitch-planner/">缝合计划 ↗</a><a href="http://127.0.0.1:8765/">本机实时 ↗</a></nav>
+    <nav class="site-nav" aria-label="实验页面导航"><a href="./" aria-current="page">监控看板</a><a href="#latest-update">最新补录</a><a href="#distillation-video">蒸馏视频对比</a><a href="./research-progress.html">论文进度 ↗</a><a href="./deployment-progress.html">部署验收 ↗</a><a href="./todo.html">实验 TODO</a><a href="https://xkai66.github.io/yolo11-stitch-planner/">缝合计划 ↗</a><a href="http://127.0.0.1:8765/">本机实时 ↗</a></nav>
     <header>
       <div><div class="eyebrow">Maize Field Lab / Experiment Ledger</div><h1>YOLO11n 批量训练看板</h1><p class="lede">实时读取本机训练日志，固定以 yolo11n 为基准。页面把当前批次、历史汇总和下一阶段分开显示，避免把旧结果当成正在训练的结果。</p></div>
       <div class="tools"><select id="runMode" class="metric-select" aria-label="选择实验阶段"><option value="historical-screen">历史290初筛</option><option value="screen">当前6模型·5轮初筛</option><option value="retry-timeout">超时复跑</option><option value="full-useful">100轮正式</option><option value="family">官方家族对照</option></select><label class="toggle-option"><input id="showUseless" type="checkbox">显示未超过基准</label><button class="theme" id="themeToggle" type="button">切换暗色</button><div class="pulse"><i class="dot"></i><span id="connection">连接中</span></div></div>
   </header>
     <section class="run-context" id="runContext" aria-live="polite"><div class="run-context-icon" id="runContextIcon">↗</div><div class="run-context-copy"><strong id="runContextTitle">正在读取任务状态</strong><p id="runContextText">正在区分当前批次与历史汇总…</p></div><span class="run-context-chip" id="runContextChip">连接中</span></section>
+    <section class="card latest-card" id="latest-update">
+      <div class="section-head"><h2>9/3–9/4 最新实验补录</h2><span class="small">已核验至 2026-09-04 12:00</span></div>
+      <p class="latest-lede">这部分专门补上原首页 9/2 之前缺失的实验进度。历史 290 个初筛模型、当前 6 个复核模型和旧的 100 轮家族对照仍保留在下方视图；新增的教师、蒸馏矩阵、ONNX 和视频证据单独标识，避免把不同 cohort 混成一张结论表。</p>
+      <div class="latest-grid">
+        <div class="latest-item"><b>资源总口径</b><strong>296</strong><span>历史290 + 当前6，初筛/正式分开</span></div>
+        <div class="latest-item"><b>YOLO11x 教师</b><strong>0.57847</strong><span>100轮最佳 mAP，仅训练阶段使用</span></div>
+        <div class="latest-item"><b>正式学生矩阵</b><strong>4 / 4</strong><span>Fast50/Fast40 · no-KD/KD 全部完成100轮</span></div>
+        <div class="latest-item"><b>ONNX 图核验</b><strong>5 / 5</strong><span>FP16 · 640×640 · batch=1 · opset17</span></div>
+      </div>
+      <div class="latest-status"><span>教师已完成</span><span>蒸馏已完成</span><span>无教师部署节点</span><span>同一视频已补测</span><span class="pending">Jetson engine 待真机</span></div>
+      <div class="latest-table"><table><thead><tr><th>日期</th><th>新增证据</th><th>关键结果</th><th>当前判断</th></tr></thead><tbody>
+        <tr><td>09-03</td><td>S18-LiteWidth20-SE-P4</td><td>独立精度队列完成100轮</td><td>与蒸馏矩阵分开归档</td></tr>
+        <tr><td>09-04</td><td>YOLO11x → Fast50/Fast40</td><td>教师0.57847；学生四组100轮完成</td><td>学生最佳0.51853，尚未过mAP门</td></tr>
+        <tr><td>09-04</td><td>固定形状 ONNX</td><td>5/5 checker通过，输出[1,6,8400]</td><td>可转入Jetson engine构建</td></tr>
+        <tr><td>09-04</td><td>同一视频 PC CUDA</td><td>Fast50 KD 58.22；Fast40 KD 59.87 e2e FPS</td><td>仅PC参考，不替代Jetson</td></tr>
+      </tbody></table></div>
+      <a class="distill-link" href="./research-progress.html">查看完整论文进度 ↗</a><span>　</span><a class="distill-link" href="./deployment-progress.html">查看部署矩阵 ↗</a>
+    </section>
     <section class="grid">
       <article class="card"><div class="metric-label">本视图汇总</div><div class="metric" id="recorded">— <small>/ —</small></div></article>
       <article class="card"><div class="metric-label">汇总内已训练</div><div class="metric" id="trained">—</div></article>
@@ -197,6 +248,29 @@
     </section>
      <section class="card chart-card"><div class="section-head"><h2>验证精度随 epoch 变化</h2><div><select id="curveMetric" class="metric-select" aria-label="选择折线指标"><option value="map5095">mAP50-95</option><option value="map50">mAP50</option><option value="precision">Precision</option><option value="recall">Recall</option></select><span class="small">基准固定为金色 · 只显示超过同轮次基准的模型</span></div></div><svg id="curveChart" class="chart" viewBox="0 0 960 340" role="img" aria-label="验证指标随 epoch 变化折线图"></svg><div id="curveLegend" class="curve-legend"></div></section>
     <section class="card chart-card"><div class="section-head"><h2>训练结果图</h2><span class="small">各模型 results.png · 点击图片可放大</span></div><div id="gallery" class="gallery"><p class="small">训练完成后显示结果图。</p></div></section>
+    <section class="card distill-card" id="distillation-video">
+      <div class="section-head"><h2>正式蒸馏视频对比</h2><span class="small">YOLO11n · Fast50 KD · Fast40 KD</span></div>
+      <p class="distill-intro">同一测试视频、640×640、batch=1、warmup=50、连续224帧。这里的 e2e FPS 包含预处理、推理、绘制和视频写入；括号内为纯推理 FPS。教师 YOLO11x 只参与训练，不参与部署。</p>
+      <div class="distill-grid">
+        <article class="distill-item">
+          <h3>YOLO11n 基线</h3><span class="distill-tag">REFERENCE · mAP50-95 0.54809</span>
+          <video class="distill-video" controls preload="metadata" playsinline><source src="./video/baseline_yolo11n_distill_compare.webm" type="video/webm">浏览器不支持 WebM 视频。</video>
+          <div class="distill-stats"><div class="distill-stat"><b>视频 e2e</b><span>63.37 <small>FPS</small></span></div><div class="distill-stat"><b>纯推理</b><span>101.96 <small>FPS</small></span></div><div class="distill-stat"><b>平均延迟</b><span>15.78 <small>ms</small></span></div><div class="distill-stat"><b>P95</b><span>17.58 <small>ms</small></span></div></div>
+        </article>
+        <article class="distill-item">
+          <h3>Fast50 KD</h3><span class="distill-tag">100 EPOCHS · mAP50-95 0.51827</span>
+          <video class="distill-video" controls preload="metadata" playsinline><source src="./video/student_fast50_kd_100.webm" type="video/webm">浏览器不支持 WebM 视频。</video>
+          <div class="distill-stats"><div class="distill-stat"><b>视频 e2e</b><span>58.22 <small>FPS</small></span></div><div class="distill-stat"><b>纯推理</b><span>102.20 <small>FPS</small></span></div><div class="distill-stat"><b>平均延迟</b><span>17.18 <small>ms</small></span></div><div class="distill-stat"><b>P95</b><span>19.00 <small>ms</small></span></div></div>
+        </article>
+        <article class="distill-item">
+          <h3>Fast40 KD</h3><span class="distill-tag">100 EPOCHS · mAP50-95 0.50785</span>
+          <video class="distill-video" controls preload="metadata" playsinline><source src="./video/student_fast40_kd_100.webm" type="video/webm">浏览器不支持 WebM 视频。</video>
+          <div class="distill-stats"><div class="distill-stat"><b>视频 e2e</b><span>59.87 <small>FPS</small></span></div><div class="distill-stat"><b>纯推理</b><span>103.48 <small>FPS</small></span></div><div class="distill-stat"><b>平均延迟</b><span>16.70 <small>ms</small></span></div><div class="distill-stat"><b>P95</b><span>19.53 <small>ms</small></span></div></div>
+        </article>
+      </div>
+      <p class="distill-note"><strong>当前结论：</strong>两个蒸馏学生已完成 PC 视频对比，但 mAP 尚未超过 YOLO11n 基线；Jetson TensorRT 的真实 FPS 仍需在 Orin Nano Super 8GB 上验收，不能用这里的 PC 数字替代。</p>
+      <a class="distill-link" href="https://xkai66.github.io/maize-yolo11-dashboard/">刷新后仍从这个项目网址进入 ↗</a>
+    </section>
     <footer>数据源：C:\Users\xkai2\Desktop\训练集\yolov11\logs\batch_experiments · 本地接口约3秒刷新 · GitHub状态约30秒同步</footer>
   </main>
   <script>
